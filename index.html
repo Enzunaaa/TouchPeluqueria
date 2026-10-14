@@ -18,7 +18,6 @@
       --muted: #777777;
       --light: #f6f5f5;
       --border: #e6e3e3;
-      --radius: 18px;
     }
 
     * {
@@ -42,10 +41,6 @@
       font: inherit;
     }
 
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     a {
       color: inherit;
       text-decoration: none;
@@ -57,7 +52,7 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255,255,255,.97);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -77,7 +72,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 1.5px;
     }
 
@@ -89,7 +84,7 @@
       border-radius: 13px;
       background: var(--black);
       color: white;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 900;
       border-bottom: 3px solid var(--red);
     }
@@ -104,10 +99,9 @@
 
     .nav-link {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       padding: 10px 15px;
       border-radius: 10px;
-      transition: 0.2s;
     }
 
     .nav-link:hover {
@@ -115,7 +109,6 @@
     }
 
     .hero {
-      position: relative;
       overflow: hidden;
       background:
         radial-gradient(ellipse at 90% 15%, rgba(142,16,25,.13), transparent 35%),
@@ -125,7 +118,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.1fr .9fr;
       align-items: center;
       gap: 55px;
     }
@@ -197,14 +190,6 @@
       outline-offset: 3px;
     }
 
-    .button-dark {
-      background: var(--black);
-    }
-
-    .button-dark:hover {
-      background: #333;
-    }
-
     .hero-logo {
       display: flex;
       justify-content: center;
@@ -222,7 +207,6 @@
       width: 100%;
       max-width: 400px;
       height: auto;
-      mix-blend-mode: multiply;
     }
 
     .logo-fallback {
@@ -289,7 +273,7 @@
     .booking-section {
       padding: 82px 0 90px;
       background: var(--light);
-      scroll-margin-top: 80px;
+      scroll-margin-top: 90px;
     }
 
     .section-heading {
@@ -389,9 +373,9 @@
       box-shadow: 0 0 0 3px rgba(142,16,25,.08);
     }
 
-    input:disabled, select:disabled {
+    select:disabled {
       background: #f3f3f3;
-      color: #888;
+      color: #777;
       cursor: not-allowed;
     }
 
@@ -559,6 +543,10 @@
         padding: 20px;
       }
 
+      .hours-row {
+        font-size: 13px;
+      }
+
       .footer-content {
         align-items: flex-start;
         flex-direction: column;
@@ -571,7 +559,7 @@
       }
 
       *, *::before, *::after {
-        transition-duration: 0.01ms !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -587,6 +575,7 @@
           <small>PELUQUERÍA MASCULINA</small>
         </span>
       </a>
+
       <a class="nav-link" href="#turnos">Reservar turno ↗</a>
     </div>
   </header>
@@ -596,12 +585,17 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Tu estilo, tu identidad</div>
+
           <h1>Tu próximo look empieza <span>acá.</span></h1>
+
           <p class="hero-copy">
             Encontrá tu momento, elegí el horario que te quede cómodo
             y reservá tu turno en TOUCH Peluquería Masculina.
           </p>
-          <a class="button" href="#turnos">RESERVAR MI TURNO <span>→</span></a>
+
+          <a class="button" href="#turnos">
+            RESERVAR MI TURNO <span>→</span>
+          </a>
         </div>
 
         <div class="hero-logo">
@@ -610,6 +604,7 @@
             alt="Logo de TOUCH Peluquería Masculina"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
           >
+
           <div class="logo-fallback">
             TOUCH<span>.</span>
             <small>PELUQUERÍA MASCULINA</small>
@@ -626,6 +621,7 @@
           <small>Encontrá el momento ideal</small>
         </div>
       </div>
+
       <div class="feature">
         <div class="feature-icon">✓</div>
         <div>
@@ -633,6 +629,7 @@
           <small>Completá tus datos en minutos</small>
         </div>
       </div>
+
       <div class="feature">
         <div class="feature-icon">↗</div>
         <div>
@@ -647,8 +644,10 @@
         <div class="section-heading">
           <div class="eyebrow">Reservas online</div>
           <h2>Agendá tu próximo turno</h2>
-          <p>Elegí el día, seleccioná el horario y dejanos tus datos.
-            Te enviaremos a WhatsApp para solicitar la reserva.</p>
+          <p>
+            Elegí el día, seleccioná el horario y dejanos tus datos.
+            Te enviaremos a WhatsApp para solicitar la reserva.
+          </p>
         </div>
 
         <form class="booking-card" id="bookingForm">
@@ -660,8 +659,15 @@
           <div class="form-grid">
             <div class="field">
               <label for="date">Fecha del turno *</label>
-              <input id="date" name="date" type="date" required>
-              <span class="field-hint">Atendemos de lunes a sábados.</span>
+              <input
+                id="date"
+                name="date"
+                type="date"
+                required
+              >
+              <span class="field-hint">
+                Atendemos de lunes a sábados.
+              </span>
             </div>
 
             <div class="field">
@@ -669,14 +675,18 @@
               <select id="time" name="time" required disabled>
                 <option value="">Primero elegí una fecha</option>
               </select>
-              <span class="field-hint" id="timeHint">Los horarios se mostrarán al elegir el día.</span>
+              <span class="field-hint" id="timeHint">
+                Los horarios se mostrarán al elegir el día.
+              </span>
             </div>
           </div>
 
           <div class="availability-note">
             <span>ⓘ</span>
-            <span>El envío de la solicitud no confirma el turno automáticamente.
-              Esperá la confirmación de TOUCH por WhatsApp.</span>
+            <span>
+              El envío de la solicitud no confirma el turno automáticamente.
+              Esperá la confirmación de TOUCH por WhatsApp.
+            </span>
           </div>
 
           <div class="divider"></div>
@@ -689,24 +699,44 @@
           <div class="form-grid">
             <div class="field">
               <label for="firstName">Nombre *</label>
-              <input id="firstName" name="firstName" type="text"
-                placeholder="Tu nombre" autocomplete="given-name"
-                maxlength="60" required>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="Tu nombre"
+                autocomplete="given-name"
+                maxlength="60"
+                required
+              >
             </div>
 
             <div class="field">
               <label for="lastName">Apellido *</label>
-              <input id="lastName" name="lastName" type="text"
-                placeholder="Tu apellido" autocomplete="family-name"
-                maxlength="60" required>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Tu apellido"
+                autocomplete="family-name"
+                maxlength="60"
+                required
+              >
             </div>
 
             <div class="field full">
               <label for="phone">Número de teléfono *</label>
-              <input id="phone" name="phone" type="tel"
-                placeholder="Ej.: 358 412 3456" autocomplete="tel"
-                maxlength="25" required>
-              <span class="field-hint">Ingresá un número al que podamos contactarte.</span>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Ej.: 358 502 1663"
+                autocomplete="tel"
+                maxlength="25"
+                required
+              >
+              <span class="field-hint">
+                Ingresá un número al que podamos contactarte.
+              </span>
             </div>
 
             <div class="field full">
@@ -714,8 +744,12 @@
                 ¿Qué te gustaría hacer?
                 <span class="optional">(opcional)</span>
               </label>
-              <textarea id="notes" name="notes" maxlength="500"
-                placeholder="Ej.: corte clásico, fade, barba o alguna indicación especial..."></textarea>
+              <textarea
+                id="notes"
+                name="notes"
+                maxlength="500"
+                placeholder="Ej.: corte clásico, fade, barba o alguna indicación especial..."
+              ></textarea>
             </div>
           </div>
 
@@ -728,7 +762,12 @@
             SOLICITAR TURNO POR WHATSAPP <span>→</span>
           </button>
 
-          <div id="formMessage" class="form-message" role="alert"></div>
+          <div
+            id="formMessage"
+            class="form-message"
+            role="alert"
+            aria-live="polite"
+          ></div>
         </form>
       </div>
     </section>
@@ -746,10 +785,12 @@
             <span>Lunes a viernes</span>
             <span>10:30–13:30 · 14:30–20:30</span>
           </div>
+
           <div class="hours-row">
             <span>Sábados</span>
             <span>10:30–20:30</span>
           </div>
+
           <div class="hours-row">
             <span>Domingos</span>
             <span>Cerrado</span>
@@ -765,17 +806,16 @@
         <div class="footer-name">TOUCH<span>.</span></div>
         <p>Peluquería Masculina</p>
       </div>
-      <p>© <span id="year"></span> TOUCH. Todos los derechos reservados.</p>
+
+      <p>
+        © <span id="year"></span> TOUCH. Todos los derechos reservados.
+      </p>
     </div>
   </footer>
 
   <script>
-    // IMPORTANTE:
-    // Reemplazá este valor por el WhatsApp de la peluquería.
-    // Usá el código de país y el número, sin +, espacios ni guiones.
-    // Argentina: 549 + código de área + número.
-    const 
-const WHATSAPP_PELUQUERIA = "5493585021663";
+    // WHATSAPP DE TOUCH
+    const WHATSAPP_PELUQUERIA = "5493585021663";
 
     const dateInput = document.getElementById("date");
     const timeSelect = document.getElementById("time");
@@ -783,21 +823,25 @@ const WHATSAPP_PELUQUERIA = "5493585021663";
     const bookingForm = document.getElementById("bookingForm");
     const formMessage = document.getElementById("formMessage");
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
-    // Usa la fecha local del dispositivo, no la fecha UTC.
+    // Obtener fecha local sin problemas de zona horaria.
     function localDateString(date) {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
+
       return `${year}-${month}-${day}`;
     }
 
+    // Impedir la selección de fechas pasadas.
     dateInput.min = localDateString(new Date());
 
     function formatDate(dateString) {
-      const parts = dateString.split("-").map(Number);
-      const date = new Date(parts[0], parts[1] - 1, parts[2], 12);
+      const [year, month, day] = dateString.split("-").map(Number);
+      const date = new Date(year, month - 1, day, 12);
+
       return new Intl.DateTimeFormat("es-AR", {
         weekday: "long",
         day: "numeric",
@@ -806,178 +850,242 @@ const WHATSAPP_PELUQUERIA = "5493585021663";
       }).format(date);
     }
 
-    function buildSlots(startHour, startMinute, endHour, endMinute) {
+    // Generar horarios con intervalos de 30 minutos.
+    function buildSlots(start, end) {
       const slots = [];
-      let current = startHour * 60 + startMinute;
-      const end = endHour * 60 + endMinute;
 
-      while (current <= end) {
-        const hours = String(Math.floor(current / 60)).padStart(2, "0");
-        const minutes = String(current % 60).padStart(2, "0");
-        slots.push(`${hours}:${minutes}`);
-        current += 30;
+      for (let minutes = start; minutes <= end; minutes += 30) {
+        const hours = String(
+          Math.floor(minutes / 60)
+        ).padStart(2, "0");
+
+        const mins = String(minutes % 60).padStart(2, "0");
+
+        slots.push(`${hours}:${mins}`);
       }
 
       return slots;
     }
 
     function getSlotsForDate(dateString) {
-      // Mediodía: 10:30 a 13:30. Tarde: 14:30 a 20:30.
+      if (!dateString) return [];
+
       const [year, month, day] = dateString.split("-").map(Number);
       const date = new Date(year, month - 1, day, 12);
       const weekday = date.getDay();
 
-      if (weekday === 0) return [];
-
-      if (weekday === 6) {
-        return buildSlots(10, 30, 20, 30);
+      // Domingo: cerrado.
+      if (weekday === 0) {
+        return [];
       }
 
+      // Sábado: 10:30 a 20:30.
+      if (weekday === 6) {
+        return buildSlots(
+          10 * 60 + 30,
+          20 * 60 + 30
+        );
+      }
+
+      // Lunes a viernes: mañana y tarde.
       return [
-        ...buildSlots(10, 30, 13, 30),
-        ...buildSlots(14, 30, 20, 30)
+        ...buildSlots(
+          10 * 60 + 30,
+          13 * 60 + 30
+        ),
+        ...buildSlots(
+          14 * 60 + 30,
+          20 * 60 + 30
+        )
       ];
     }
 
+    function showFormMessage(message) {
+      formMessage.textContent = message;
+      formMessage.classList.add("show");
+    }
+
+    function clearFormMessage() {
+      formMessage.textContent = "";
+      formMessage.classList.remove("show");
+    }
+
+    // Actualizar las opciones del selector de horarios.
     function refreshSlots() {
       const selectedDate = dateInput.value;
+
       timeSelect.innerHTML = "";
+      timeSelect.disabled = true;
 
       if (!selectedDate) {
-        timeSelect.disabled = true;
-        timeSelect.add(new Option("Primero elegí una fecha", ""));
-        timeHint.textContent = "Los horarios se mostrarán al elegir el día.";
+        timeSelect.add(
+          new Option("Primero elegí una fecha", "")
+        );
+
+        timeHint.textContent =
+          "Los horarios se mostrarán al elegir el día.";
+
         return;
       }
 
       const slots = getSlotsForDate(selectedDate);
 
       if (slots.length === 0) {
-        timeSelect.disabled = true;
-        timeSelect.add(new Option("Día no disponible", ""));
-        timeHint.textContent = "Los domingos la peluquería permanece cerrada.";
+        timeSelect.add(
+          new Option("Día no disponible", "")
+        );
+
+        timeHint.textContent =
+          "Los domingos la peluquería permanece cerrada.";
+
         return;
       }
 
-      // No ofrecer horas que ya pasaron si se elige el día de hoy.
       const now = new Date();
       const today = localDateString(now);
 
+      // Si la fecha seleccionada es hoy, quitar las horas pasadas.
       const availableSlots = selectedDate === today
         ? slots.filter(slot => {
-            const [hours, minutes] = slot.split(":").map(Number);
+            const [hour, minute] = slot.split(":").map(Number);
+
             const slotDate = new Date(
-              now.getFullYear(), now.getMonth(), now.getDate(),
-              hours, minutes
+              now.getFullYear(),
+              now.getMonth(),
+              now.getDate(),
+              hour,
+              minute,
+              0
             );
+
             return slotDate > now;
           })
         : slots;
 
-      timeSelect.disabled = false;
-
       if (availableSlots.length === 0) {
-        timeSelect.disabled = true;
-        timeSelect.add(new Option("No quedan horarios para hoy", ""));
-        timeHint.textContent = "Elegí otra fecha para ver más horarios.";
+        timeSelect.add(
+          new Option("No quedan horarios para hoy", "")
+        );
+
+        timeHint.textContent =
+          "Elegí otra fecha para consultar los horarios.";
+
         return;
       }
 
-      timeSelect.add(new Option("Seleccioná un horario", ""));
+      timeSelect.add(
+        new Option("Seleccioná un horario", "")
+      );
 
       availableSlots.forEach(slot => {
-        timeSelect.add(new Option(slot + " hs", slot));
+        timeSelect.add(
+          new Option(slot + " hs", slot)
+        );
       });
 
+      timeSelect.disabled = false;
+
       timeHint.textContent =
-        "Los turnos se ofrecen cada 30 minutos. La solicitud queda pendiente de confirmación.";
+        "Turnos cada 30 minutos. La reserva requiere confirmación.";
     }
 
-    dateInput.addEventListener("change", () => {
-      formMessage.classList.remove("show");
-
-      if (dateInput.value) {
-        const [year, month, day] = dateInput.value.split("-").map(Number);
-        const selectedDate = new Date(year, month - 1, day, 12);
-
-        if (selectedDate.getDay() === 0) {
-          dateInput.setCustomValidity("Los domingos no atendemos.");
-          dateInput.reportValidity();
-          dateInput.value = "";
-        } else {
-          dateInput.setCustomValidity("");
-        }
-      }
-
+    // Escuchar los dos eventos para actualizar el selector.
+    dateInput.addEventListener("input", () => {
+      clearFormMessage();
       refreshSlots();
     });
 
+    dateInput.addEventListener("change", () => {
+      clearFormMessage();
+      refreshSlots();
+    });
+
+    // Enviar la solicitud por WhatsApp.
     bookingForm.addEventListener("submit", event => {
       event.preventDefault();
-      formMessage.classList.remove("show");
+      clearFormMessage();
 
-      if (!bookingForm.reportValidity()) return;
-
-      if (
-        WHATSAPP_PELUQUERIA === "549XXXXXXXXXX" ||
-        !/^\d{10,15}$/.test(WHATSAPP_PELUQUERIA)
-      ) {
-        formMessage.textContent =
-          "Falta configurar el número de WhatsApp de la peluquería en el código de la página.";
-        formMessage.classList.add("show");
+      if (!bookingForm.reportValidity()) {
         return;
       }
 
       const date = dateInput.value;
       const time = timeSelect.value;
-      const slots = getSlotsForDate(date);
 
-      // Validación adicional del día, horario y hora actual.
-      if (!slots.includes(time)) {
-        formMessage.textContent = "Elegí una fecha y un horario válidos.";
-        formMessage.classList.add("show");
-        return;
-      }
+      if (
+        !date ||
+        !time ||
+        !getSlotsForDate(date).includes(time)
+      ) {
+        showFormMessage(
+          "Seleccioná una fecha y un horario válido."
+        );
 
-      const [year, month, day] = date.split("-").map(Number);
-      const [hours, minutes] = time.split(":").map(Number);
-      const selectedDateTime = new Date(
-        year, month - 1, day, hours, minutes
-      );
-
-      if (selectedDateTime <= new Date()) {
-        formMessage.textContent =
-          "Ese horario ya pasó. Elegí otro horario disponible.";
-        formMessage.classList.add("show");
         refreshSlots();
         return;
       }
 
-      const firstName = document.getElementById("firstName").value.trim();
-      const lastName = document.getElementById("lastName").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const notes = document.getElementById("notes").value.trim();
+      const [year, month, day] = date.split("-").map(Number);
+      const [hour, minute] = time.split(":").map(Number);
+
+      const selectedDateTime = new Date(
+        year,
+        month - 1,
+        day,
+        hour,
+        minute
+      );
+
+      if (selectedDateTime <= new Date()) {
+        showFormMessage(
+          "Ese horario ya pasó. Elegí otro horario disponible."
+        );
+
+        refreshSlots();
+        return;
+      }
+
+      const firstName =
+        document.getElementById("firstName").value.trim();
+
+      const lastName =
+        document.getElementById("lastName").value.trim();
+
+      const phone =
+        document.getElementById("phone").value.trim();
+
+      const notes =
+        document.getElementById("notes").value.trim();
 
       const message = [
-        "✂️ *SOLICITUD DE TURNO — TOUCH PELUQUERÍA MASCULINA*",
+        "✂️ SOLICITUD DE TURNO",
+        "TOUCH PELUQUERÍA MASCULINA",
         "",
-        "👤 *Nombre:* " + firstName,
-        "👤 *Apellido:* " + lastName,
-        "📱 *Teléfono del cliente:* " + phone,
-        "📅 *Fecha:* " + formatDate(date),
-        "🕒 *Horario solicitado:* " + time + " hs",
-        "📝 *Observaciones:* " + (notes || "Sin observaciones"),
+        "Nombre: " + firstName,
+        "Apellido: " + lastName,
+        "Teléfono: " + phone,
+        "Fecha: " + formatDate(date),
+        "Horario solicitado: " + time + " hs",
+        "Observaciones: " + (notes || "Sin observaciones"),
         "",
-        "⏳ Solicitud pendiente de confirmación."
+        "Estado: pendiente de confirmación."
       ].join("\n");
 
       const whatsappURL =
-        "https://wa.me/" + WHATSAPP_PELUQUERIA +
-        "?text=" + encodeURIComponent(message);
+        "https://wa.me/" +
+        WHATSAPP_PELUQUERIA +
+        "?text=" +
+        encodeURIComponent(message);
 
-      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+      window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
     });
+
+    // Inicializar el selector al cargar la página.
+    refreshSlots();
   </script>
 </body>
 </html>
-
