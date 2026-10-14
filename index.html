@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#151515">
-  <meta name="description" content="Reservá tu turno en TOUCH Peluquería Masculina. Elegí el día y horario y envianos tu solicitud por WhatsApp.">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Reservá tu turno en TOUCH Peluquería Masculina. Elegí el día y horario que más te convenga.">
   <title>TOUCH | Peluquería Masculina</title>
 
   <style>
     :root {
-      --black: #151515;
-      --dark: #202020;
-      --red: #8e1019;
-      --red-hover: #a81722;
-      --white: #ffffff;
-      --muted: #777777;
-      --light: #f6f5f5;
-      --border: #e6e3e3;
+      --negro: #101010;
+      --negro-suave: #181818;
+      --rojo: #9d1725;
+      --rojo-claro: #c52c3b;
+      --blanco: #ffffff;
+      --gris: #a7a7a7;
+      --borde: rgba(255,255,255,.12);
+      --verde: #32b768;
     }
 
     * {
@@ -32,8 +32,8 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--white);
-      color: var(--black);
+      background: var(--negro);
+      color: var(--blanco);
       line-height: 1.6;
     }
 
@@ -41,525 +41,499 @@
       font: inherit;
     }
 
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
     }
 
-    .container {
+    .contenedor {
       width: min(1120px, 92%);
       margin: 0 auto;
     }
 
     header {
-      background: rgba(255,255,255,.97);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(12px);
+      background: rgba(12,12,12,.97);
+      border-bottom: 1px solid var(--borde);
+      position: relative;
+      z-index: 5;
     }
 
-    .nav {
-      min-height: 82px;
+    .barra {
+      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .brand {
+    .marca {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
+      gap: 13px;
+      min-width: 0;
     }
 
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: var(--black);
-      color: white;
-      font-size: 22px;
-      font-weight: 900;
-      border-bottom: 3px solid var(--red);
+    .logo {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 9px;
+      padding: 4px;
     }
 
-    .brand small {
+    .marca-texto strong {
       display: block;
+      font-size: 21px;
+      letter-spacing: 3px;
+      line-height: 1.2;
+    }
+
+    .marca-texto span {
+      display: block;
+      color: #c8c8c8;
       font-size: 10px;
-      color: var(--muted);
       letter-spacing: 2px;
-      font-weight: 700;
+      margin-top: 5px;
     }
 
     .nav-link {
+      color: #e7e7e7;
       font-size: 14px;
-      font-weight: 800;
-      padding: 10px 15px;
-      border-radius: 10px;
+      font-weight: 700;
     }
 
-    .nav-link:hover {
-      background: var(--light);
+    .boton {
+      border: 0;
+      border-radius: 7px;
+      padding: 13px 20px;
+      background: var(--rojo);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, transform .2s;
+    }
+
+    .boton:hover {
+      background: var(--rojo-claro);
+      transform: translateY(-1px);
+    }
+
+    .boton:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .boton-secundario {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.3);
+    }
+
+    .boton-secundario:hover {
+      background: rgba(255,255,255,.08);
     }
 
     .hero {
-      overflow: hidden;
+      min-height: 490px;
+      display: flex;
+      align-items: center;
       background:
-        radial-gradient(ellipse at 90% 15%, rgba(142,16,25,.13), transparent 35%),
-        linear-gradient(135deg, #fff 35%, #f4f1f1);
-      padding: 72px 0 76px;
+        radial-gradient(ellipse at 80% 45%, rgba(157,23,37,.22), transparent 44%),
+        linear-gradient(135deg, #111 0%, #191919 60%, #100d0e 100%);
+      border-bottom: 1px solid var(--borde);
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      align-items: center;
-      gap: 55px;
+    .hero-contenido {
+      padding-top: 65px;
+      padding-bottom: 65px;
+      max-width: 760px;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
+    .etiqueta {
+      display: inline-block;
+      border: 1px solid rgba(197,44,59,.65);
+      color: #ff8a95;
+      padding: 6px 12px;
+      border-radius: 30px;
       text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 800;
       margin-bottom: 20px;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 2px;
-      background: var(--red);
-    }
-
     h1 {
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 1.04;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.02;
       letter-spacing: -2px;
+      text-transform: uppercase;
       margin-bottom: 22px;
     }
 
     h1 span {
-      color: var(--red);
+      color: var(--rojo-claro);
     }
 
-    .hero-copy {
-      max-width: 500px;
-      color: #606060;
+    .hero p {
+      color: #c5c5c5;
+      max-width: 570px;
       font-size: 17px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
-    .button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      min-height: 52px;
-      border: 0;
-      border-radius: 12px;
-      padding: 14px 23px;
-      background: var(--red);
-      color: white;
-      font-weight: 800;
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-    }
-
-    .button:hover {
-      background: var(--red-hover);
-      transform: translateY(-1px);
-    }
-
-    .button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible,
-    a:focus-visible {
-      outline: 3px solid #c77c81;
-      outline-offset: 3px;
-    }
-
-    .hero-logo {
+    .hero-botones {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 340px;
-      padding: 24px;
-      background: white;
-      border: 1px solid #f0eded;
-      border-radius: 28px;
-      box-shadow: 0 25px 65px rgba(0,0,0,.08);
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .hero-logo img {
-      display: block;
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-    }
-
-    .logo-fallback {
-      display: none;
-      text-align: center;
-      font-size: 55px;
-      line-height: 1;
-      font-weight: 950;
-      font-style: italic;
-      letter-spacing: -4px;
-    }
-
-    .logo-fallback span {
-      color: var(--red);
-    }
-
-    .logo-fallback small {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 4px;
-      margin-top: 12px;
-      color: var(--black);
-      font-style: normal;
-    }
-
-    .features {
+    .beneficios {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 25px 0;
-      border-bottom: 1px solid var(--border);
+      gap: 16px;
+      padding-top: 34px;
+      padding-bottom: 34px;
     }
 
-    .feature {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 10px;
+    .beneficio {
+      background: #181818;
+      border: 1px solid var(--borde);
+      padding: 22px;
+      border-radius: 10px;
     }
 
-    .feature-icon {
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 12px;
-      color: var(--red);
-      background: #f8eeee;
-      font-size: 20px;
+    .beneficio .icono {
+      color: #f15a68;
+      font-size: 24px;
+      margin-bottom: 8px;
     }
 
-    .feature strong {
-      display: block;
-      font-size: 14px;
+    .beneficio h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
     }
 
-    .feature small {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
+    .beneficio p {
+      color: var(--gris);
+      font-size: 13px;
     }
 
-    .booking-section {
-      padding: 82px 0 90px;
-      background: var(--light);
-      scroll-margin-top: 90px;
+    .seccion-turnos {
+      padding: 65px 0 80px;
+      background: #151515;
+      border-top: 1px solid var(--borde);
     }
 
-    .section-heading {
+    .encabezado-seccion {
       text-align: center;
-      max-width: 650px;
-      margin: 0 auto 38px;
+      margin-bottom: 35px;
     }
 
-    .section-heading .eyebrow {
-      justify-content: center;
-    }
-
-    h2 {
-      font-size: clamp(29px, 4vw, 42px);
-      line-height: 1.15;
-      letter-spacing: -1px;
+    .encabezado-seccion .etiqueta {
       margin-bottom: 12px;
     }
 
-    .section-heading p {
-      color: var(--muted);
-      font-size: 15px;
+    .encabezado-seccion h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    .booking-card {
-      max-width: 790px;
+    .encabezado-seccion p {
+      color: var(--gris);
+      max-width: 580px;
       margin: 0 auto;
-      padding: clamp(22px, 5vw, 42px);
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.045);
     }
 
-    .form-section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-
-    .step-number {
+    .panel-turnos {
       display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      color: white;
-      background: var(--black);
-      font-size: 14px;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 25px;
+      align-items: start;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 19px;
-    }
-
-    .field {
+    .tarjeta {
+      background: #1d1d1d;
+      border: 1px solid var(--borde);
+      border-radius: 13px;
+      padding: 27px;
       min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
     }
 
-    .field.full {
-      grid-column: 1 / -1;
+    .tarjeta h3 {
+      font-size: 21px;
+      margin-bottom: 7px;
     }
 
-    label {
+    .subtitulo {
+      color: var(--gris);
       font-size: 13px;
-      font-weight: 800;
+      margin-bottom: 23px;
     }
 
-    label .optional {
-      font-weight: 400;
-      color: var(--muted);
+    .campo {
+      margin-bottom: 17px;
     }
 
-    input, select, textarea {
+    .campo label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: #f0f0f0;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
       width: 100%;
-      min-height: 50px;
-      padding: 12px 14px;
-      border: 1px solid #dcd8d8;
-      border-radius: 10px;
-      background: white;
-      color: var(--black);
+      color: #fff;
+      background: #111;
+      border: 1px solid #3b3b3b;
+      border-radius: 7px;
+      padding: 12px 13px;
       outline: none;
-      transition: border-color .2s, box-shadow .2s;
+      min-height: 46px;
     }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(142,16,25,.08);
-    }
-
-    select:disabled {
-      background: #f3f3f3;
-      color: #777;
-      cursor: not-allowed;
-    }
-
-    textarea {
-      min-height: 100px;
+    .campo textarea {
       resize: vertical;
+      min-height: 85px;
     }
 
-    .field-hint {
-      color: var(--muted);
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+      border-color: var(--rojo-claro);
+      box-shadow: 0 0 0 2px rgba(197,44,59,.13);
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(1);
+    }
+
+    .campo select:disabled {
+      opacity: .6;
+    }
+
+    .nota {
       font-size: 12px;
+      color: var(--gris);
+      margin-top: 7px;
     }
 
-    .availability-note {
-      display: flex;
-      gap: 10px;
-      padding: 13px 15px;
-      margin: 20px 0 28px;
-      background: #f8eeee;
-      border-radius: 10px;
-      color: #651017;
-      font-size: 13px;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 30px 0;
-    }
-
-    .privacy-note {
-      font-size: 12px;
-      color: var(--muted);
-      margin: 16px 0;
-    }
-
-    .submit-button {
-      width: 100%;
-      min-height: 56px;
-      font-size: 15px;
-    }
-
-    .form-message {
+    .estado {
       display: none;
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 10px;
-      color: #651017;
-      background: #f8eeee;
+      border-radius: 7px;
+      padding: 12px 14px;
+      margin: 14px 0;
       font-size: 13px;
+      overflow-wrap: anywhere;
     }
 
-    .form-message.show {
+    .estado.visible {
       display: block;
     }
 
-    .hours-section {
-      padding: 65px 0;
-      background: white;
+    .estado.info {
+      background: #252525;
+      border: 1px solid #4a4a4a;
+      color: #eee;
     }
 
-    .hours-card {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
+    .estado.error {
+      background: #351719;
+      border: 1px solid #8e333b;
+      color: #ffc6ca;
     }
 
-    .hours-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
+    .estado.exito {
+      background: #143021;
+      border: 1px solid #287c4c;
+      color: #c7f6d8;
+    }
+
+    .horarios {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 9px;
+    }
+
+    .horario {
+      background: #111;
+      border: 1px solid #414141;
+      color: #fff;
+      padding: 11px 5px;
+      border-radius: 7px;
+      cursor: pointer;
       font-size: 14px;
-    }
-
-    .hours-row:last-child {
-      border: 0;
-    }
-
-    .hours-row span:last-child {
-      text-align: right;
       font-weight: 700;
     }
 
-    footer {
-      padding: 30px 0;
-      background: var(--black);
-      color: white;
+    .horario:hover {
+      border-color: var(--rojo-claro);
     }
 
-    .footer-content {
+    .horario.seleccionado {
+      background: var(--rojo);
+      border-color: var(--rojo-claro);
+    }
+
+    .horario:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .sin-horarios {
+      color: var(--gris);
+      font-size: 13px;
+      grid-column: 1 / -1;
+      padding: 12px 0;
+    }
+
+    .resumen {
+      background: #111;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 18px 0;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .resumen strong {
+      color: #fff;
+    }
+
+    .boton-completo {
+      width: 100%;
+    }
+
+    .horarios-atencion {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .horarios-atencion li {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--borde);
+      font-size: 14px;
     }
 
-    .footer-content p {
-      color: #bcbcbc;
+    .horarios-atencion li:last-child {
+      border-bottom: 0;
+    }
+
+    .horarios-atencion span:last-child {
+      color: #ff8a95;
+      text-align: right;
+    }
+
+    .aviso-confirmacion {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: rgba(157,23,37,.13);
+      border: 1px solid rgba(197,44,59,.35);
+      color: #ddd;
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--borde);
+      background: #0b0b0b;
+      color: var(--gris);
       font-size: 12px;
+      text-align: center;
     }
 
-    .footer-name {
-      font-weight: 900;
+    footer strong {
+      color: #fff;
       letter-spacing: 2px;
     }
 
-    .footer-name span {
-      color: #d44750;
+    .oculto {
+      display: none !important;
     }
 
-    @media (max-width: 760px) {
-      .nav {
-        min-height: 72px;
+    @media (max-width: 780px) {
+      .panel-turnos {
+        grid-template-columns: 1fr;
+      }
+
+      .beneficios {
+        grid-template-columns: 1fr;
       }
 
       .hero {
-        padding: 50px 0;
+        min-height: auto;
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+      .hero-contenido {
+        padding-top: 55px;
+        padding-bottom: 55px;
       }
 
-      .hero-logo {
-        min-height: 230px;
-        padding: 15px;
-      }
-
-      .hero-logo img {
-        max-width: 310px;
-      }
-
-      .hero-copy {
-        font-size: 15px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 5px;
-      }
-
-      .feature {
-        padding: 8px 0;
-      }
-
-      .booking-section {
-        padding: 58px 0;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .hours-card {
-        padding: 20px;
-      }
-
-      .hours-row {
-        font-size: 13px;
-      }
-
-      .footer-content {
-        align-items: flex-start;
-        flex-direction: column;
+      .tarjeta {
+        padding: 21px;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
+    @media (max-width: 480px) {
+      .barra {
+        min-height: 76px;
       }
 
-      *, *::before, *::after {
-        transition-duration: .01ms !important;
+      .logo {
+        width: 49px;
+        height: 49px;
+      }
+
+      .marca-texto strong {
+        font-size: 17px;
+        letter-spacing: 2px;
+      }
+
+      .marca-texto span {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .hero-botones .boton {
+        width: 100%;
+      }
+
+      .horarios {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
   </style>
@@ -567,525 +541,575 @@
 
 <body>
   <header>
-    <div class="container nav">
-      <a class="brand" href="#" aria-label="TOUCH, inicio">
-        <span class="brand-mark">T.</span>
-        <span>
-          TOUCH
-          <small>PELUQUERÍA MASCULINA</small>
-        </span>
+    <div class="contenedor barra">
+      <a class="marca" href="#" aria-label="TOUCH Peluquería Masculina">
+        <img
+          class="logo"
+          src="logo.png"
+          alt="Logo de TOUCH"
+          onerror="this.style.display='none'"
+        >
+        <div class="marca-texto">
+          <strong>TOUCH</strong>
+          <span>PELUQUERÍA MASCULINA</span>
+        </div>
       </a>
 
-      <a class="nav-link" href="#turnos">Reservar turno ↗</a>
+      <a class="nav-link" href="#turnos">RESERVAR TURNO ↓</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Tu estilo, tu identidad</div>
+      <div class="contenedor hero-contenido">
+        <span class="etiqueta">Tu estilo, tu identidad</span>
 
-          <h1>Tu próximo look empieza <span>acá.</span></h1>
+        <h1>Tu mejor versión.<br><span>Empieza acá.</span></h1>
 
-          <p class="hero-copy">
-            Encontrá tu momento, elegí el horario que te quede cómodo
-            y reservá tu turno en TOUCH Peluquería Masculina.
-          </p>
+        <p>
+          Un buen corte cambia todo. Elegí el día y horario que mejor te quede
+          y solicitá tu turno en TOUCH Peluquería Masculina.
+        </p>
 
-          <a class="button" href="#turnos">
-            RESERVAR MI TURNO <span>→</span>
-          </a>
-        </div>
-
-        <div class="hero-logo">
-          <img
-            src="logo.png"
-            alt="Logo de TOUCH Peluquería Masculina"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-          >
-
-          <div class="logo-fallback">
-            TOUCH<span>.</span>
-            <small>PELUQUERÍA MASCULINA</small>
-          </div>
+        <div class="hero-botones">
+          <a class="boton" href="#turnos">RESERVAR MI TURNO</a>
+          <a class="boton boton-secundario" href="#horarios">VER HORARIOS</a>
         </div>
       </div>
     </section>
 
-    <section class="container features" aria-label="Información de reservas">
-      <div class="feature">
-        <div class="feature-icon">◷</div>
-        <div>
-          <strong>Elegí tu horario</strong>
-          <small>Encontrá el momento ideal</small>
-        </div>
-      </div>
+    <section class="contenedor beneficios">
+      <article class="beneficio">
+        <div class="icono">✂</div>
+        <h3>Estilo personalizado</h3>
+        <p>Un corte pensado para vos y tu estilo.</p>
+      </article>
 
-      <div class="feature">
-        <div class="feature-icon">✓</div>
-        <div>
-          <strong>Solicitud sencilla</strong>
-          <small>Completá tus datos en minutos</small>
-        </div>
-      </div>
+      <article class="beneficio">
+        <div class="icono">◷</div>
+        <h3>Reservá con anticipación</h3>
+        <p>Elegí entre los horarios disponibles.</p>
+      </article>
 
-      <div class="feature">
-        <div class="feature-icon">↗</div>
-        <div>
-          <strong>Confirmación por WhatsApp</strong>
-          <small>Coordiná directamente con nosotros</small>
-        </div>
-      </div>
+      <article class="beneficio">
+        <div class="icono">✓</div>
+        <h3>Confirmación por WhatsApp</h3>
+        <p>Te contactaremos para confirmar tu solicitud.</p>
+      </article>
     </section>
 
-    <section class="booking-section" id="turnos">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Reservas online</div>
-          <h2>Agendá tu próximo turno</h2>
+    <section class="seccion-turnos" id="turnos">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <span class="etiqueta">Agenda online</span>
+          <h2>Reservá tu turno</h2>
           <p>
-            Elegí el día, seleccioná el horario y dejanos tus datos.
-            Te enviaremos a WhatsApp para solicitar la reserva.
+            Seleccioná una fecha, consultá los horarios libres y completá tus datos.
           </p>
         </div>
 
-        <form class="booking-card" id="bookingForm">
-          <div class="form-section-title">
-            <span class="step-number">01</span>
-            Elegí el día y el horario
-          </div>
+        <div class="panel-turnos">
+          <section class="tarjeta">
+            <h3>Elegí tu horario</h3>
+            <p class="subtitulo">
+              Los horarios se consultan en el sistema de reservas.
+            </p>
 
-          <div class="form-grid">
-            <div class="field">
-              <label for="date">Fecha del turno *</label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-              >
-              <span class="field-hint">
-                Atendemos de lunes a sábados.
-              </span>
+            <form id="bookingForm">
+              <div class="campo">
+                <label for="date">Fecha del turno *</label>
+                <input id="date" name="fecha" type="date" required>
+                <p class="nota">Los domingos no hay atención.</p>
+              </div>
+
+              <div class="campo">
+                <label>Horarios disponibles *</label>
+                <div id="horarios" class="horarios">
+                  <p class="sin-horarios">
+                    Seleccioná una fecha para consultar la disponibilidad.
+                  </p>
+                </div>
+                <input id="time" name="hora" type="hidden" required>
+              </div>
+
+              <div class="campo">
+                <label for="nombre">Nombre *</label>
+                <input
+                  id="nombre"
+                  name="nombre"
+                  type="text"
+                  maxlength="80"
+                  autocomplete="given-name"
+                  placeholder="Tu nombre"
+                  required
+                >
+              </div>
+
+              <div class="campo">
+                <label for="apellido">Apellido *</label>
+                <input
+                  id="apellido"
+                  name="apellido"
+                  type="text"
+                  maxlength="80"
+                  autocomplete="family-name"
+                  placeholder="Tu apellido"
+                  required
+                >
+              </div>
+
+              <div class="campo">
+                <label for="telefono">Teléfono de contacto *</label>
+                <input
+                  id="telefono"
+                  name="telefono"
+                  type="tel"
+                  maxlength="30"
+                  autocomplete="tel"
+                  placeholder="Ej.: 358 500 0000"
+                  required
+                >
+              </div>
+
+              <div class="campo">
+                <label for="observaciones">Observaciones (opcional)</label>
+                <textarea
+                  id="observaciones"
+                  name="observaciones"
+                  maxlength="500"
+                  placeholder="¿Querés comentarnos algo?"
+                ></textarea>
+              </div>
+
+              <div id="estado" class="estado" role="status" aria-live="polite"></div>
+
+              <div class="resumen">
+                <div>Fecha: <strong id="resumenFecha">Sin seleccionar</strong></div>
+                <div>Horario: <strong id="resumenHora">Sin seleccionar</strong></div>
+              </div>
+
+              <button id="enviar" class="boton boton-completo" type="submit">
+                SOLICITAR TURNO
+              </button>
+
+              <p class="nota">
+                La solicitud queda pendiente hasta que TOUCH confirme el turno.
+              </p>
+            </form>
+          </section>
+
+          <aside class="tarjeta" id="horarios">
+            <h3>Horarios de atención</h3>
+            <p class="subtitulo">Organizá tu visita a TOUCH.</p>
+
+            <ul class="horarios-atencion">
+              <li>
+                <span>Lunes a viernes</span>
+                <span>10:30–13:30<br>14:30–20:30</span>
+              </li>
+              <li>
+                <span>Sábados</span>
+                <span>10:30–20:30</span>
+              </li>
+              <li>
+                <span>Domingos</span>
+                <span>Cerrado</span>
+              </li>
+            </ul>
+
+            <div class="aviso-confirmacion">
+              <strong>Importante</strong>
+              <p>
+                Enviar una solicitud no significa que el turno esté confirmado.
+                Esperá la confirmación del equipo por WhatsApp.
+              </p>
             </div>
 
-            <div class="field">
-              <label for="time">Horario disponible *</label>
-              <select id="time" name="time" required disabled>
-                <option value="">Primero elegí una fecha</option>
-              </select>
-              <span class="field-hint" id="timeHint">
-                Los horarios se mostrarán al elegir el día.
-              </span>
-            </div>
-          </div>
-
-          <div class="availability-note">
-            <span>ⓘ</span>
-            <span>
-              El envío de la solicitud no confirma el turno automáticamente.
-              Esperá la confirmación de TOUCH por WhatsApp.
-            </span>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="form-section-title">
-            <span class="step-number">02</span>
-            Tus datos
-          </div>
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="firstName">Nombre *</label>
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                placeholder="Tu nombre"
-                autocomplete="given-name"
-                maxlength="60"
-                required
-              >
-            </div>
-
-            <div class="field">
-              <label for="lastName">Apellido *</label>
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                placeholder="Tu apellido"
-                autocomplete="family-name"
-                maxlength="60"
-                required
-              >
-            </div>
-
-            <div class="field full">
-              <label for="phone">Número de teléfono *</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="Ej.: 358 502 1663"
-                autocomplete="tel"
-                maxlength="25"
-                required
-              >
-              <span class="field-hint">
-                Ingresá un número al que podamos contactarte.
-              </span>
-            </div>
-
-            <div class="field full">
-              <label for="notes">
-                ¿Qué te gustaría hacer?
-                <span class="optional">(opcional)</span>
-              </label>
-              <textarea
-                id="notes"
-                name="notes"
-                maxlength="500"
-                placeholder="Ej.: corte clásico, fade, barba o alguna indicación especial..."
-              ></textarea>
-            </div>
-          </div>
-
-          <p class="privacy-note">
-            Usaremos tus datos para gestionar tu solicitud y comunicarnos
-            con vos respecto del turno.
-          </p>
-
-          <button class="button submit-button" type="submit">
-            SOLICITAR TURNO POR WHATSAPP <span>→</span>
-          </button>
-
-          <div
-            id="formMessage"
-            class="form-message"
-            role="alert"
-            aria-live="polite"
-          ></div>
-        </form>
-      </div>
-    </section>
-
-    <section class="hours-section">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Estamos para vos</div>
-          <h2>Nuestros horarios</h2>
-          <p>Consultá los días y horarios habilitados para reservar.</p>
-        </div>
-
-        <div class="hours-card">
-          <div class="hours-row">
-            <span>Lunes a viernes</span>
-            <span>10:30–13:30 · 14:30–20:30</span>
-          </div>
-
-          <div class="hours-row">
-            <span>Sábados</span>
-            <span>10:30–20:30</span>
-          </div>
-
-          <div class="hours-row">
-            <span>Domingos</span>
-            <span>Cerrado</span>
-          </div>
+            <a
+              class="boton boton-secundario boton-completo"
+              style="margin-top:20px"
+              href="https://wa.me/5493585021663"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CONSULTAR POR WHATSAPP
+            </a>
+          </aside>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-content">
-      <div>
-        <div class="footer-name">TOUCH<span>.</span></div>
-        <p>Peluquería Masculina</p>
-      </div>
-
-      <p>
-        © <span id="year"></span> TOUCH. Todos los derechos reservados.
-      </p>
+    <div class="contenedor">
+      <strong>TOUCH</strong>
+      <p>PELUQUERÍA MASCULINA</p>
+      <p>© <span id="anio"></span> TOUCH. Todos los derechos reservados.</p>
     </div>
   </footer>
 
+  <!-- Destino oculto para enviar el formulario sin abandonar la página. -->
+  <iframe
+    name="touchPostFrame"
+    id="touchPostFrame"
+    title="Envío de solicitud"
+    class="oculto"
+  ></iframe>
+
   <script>
-    // WHATSAPP DE TOUCH
-    const WHATSAPP_PELUQUERIA = "5493585021663";
+    "use strict";
 
-    const dateInput = document.getElementById("date");
-    const timeSelect = document.getElementById("time");
-    const timeHint = document.getElementById("timeHint");
-    const bookingForm = document.getElementById("bookingForm");
-    const formMessage = document.getElementById("formMessage");
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbyCnjh4Z_cugIZypGM_xWtqd4dIpeu5o-EdruxriQM-X7SZyuJF4BxqtMf8K-DTyQJ2NA/exec";
 
-    document.getElementById("year").textContent =
+    const WHATSAPP = "5493585021663";
+
+    const form = document.getElementById("bookingForm");
+    const fechaInput = document.getElementById("date");
+    const horaInput = document.getElementById("time");
+    const horariosContenedor = document.getElementById("horarios");
+    const estadoContenedor = document.getElementById("estado");
+    const botonEnviar = document.getElementById("enviar");
+    const iframeEnvio = document.getElementById("touchPostFrame");
+
+    let horariosDisponibles = [];
+    let consultaActual = 0;
+    let enviando = false;
+    let envioPendiente = false;
+
+    document.getElementById("anio").textContent =
       new Date().getFullYear();
 
-    // Obtener fecha local sin problemas de zona horaria.
-    function localDateString(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
+    function fechaLocalISO() {
+      const ahora = new Date();
+      const anio = ahora.getFullYear();
+      const mes = String(ahora.getMonth() + 1).padStart(2, "0");
+      const dia = String(ahora.getDate()).padStart(2, "0");
 
-      return `${year}-${month}-${day}`;
+      return `${anio}-${mes}-${dia}`;
     }
 
-    // Impedir la selección de fechas pasadas.
-    dateInput.min = localDateString(new Date());
+    fechaInput.min = fechaLocalISO();
 
-    function formatDate(dateString) {
-      const [year, month, day] = dateString.split("-").map(Number);
-      const date = new Date(year, month - 1, day, 12);
-
-      return new Intl.DateTimeFormat("es-AR", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(date);
+    function mostrarEstado(mensaje, tipo) {
+      estadoContenedor.textContent = mensaje;
+      estadoContenedor.className = `estado visible ${tipo}`;
     }
 
-    // Generar horarios con intervalos de 30 minutos.
-    function buildSlots(start, end) {
-      const slots = [];
-
-      for (let minutes = start; minutes <= end; minutes += 30) {
-        const hours = String(
-          Math.floor(minutes / 60)
-        ).padStart(2, "0");
-
-        const mins = String(minutes % 60).padStart(2, "0");
-
-        slots.push(`${hours}:${mins}`);
-      }
-
-      return slots;
+    function limpiarEstado() {
+      estadoContenedor.textContent = "";
+      estadoContenedor.className = "estado";
     }
 
-    function getSlotsForDate(dateString) {
-      if (!dateString) return [];
+    function actualizarResumen() {
+      document.getElementById("resumenFecha").textContent =
+        fechaInput.value || "Sin seleccionar";
 
-      const [year, month, day] = dateString.split("-").map(Number);
-      const date = new Date(year, month - 1, day, 12);
-      const weekday = date.getDay();
-
-      // Domingo: cerrado.
-      if (weekday === 0) {
-        return [];
-      }
-
-      // Sábado: 10:30 a 20:30.
-      if (weekday === 6) {
-        return buildSlots(
-          10 * 60 + 30,
-          20 * 60 + 30
-        );
-      }
-
-      // Lunes a viernes: mañana y tarde.
-      return [
-        ...buildSlots(
-          10 * 60 + 30,
-          13 * 60 + 30
-        ),
-        ...buildSlots(
-          14 * 60 + 30,
-          20 * 60 + 30
-        )
-      ];
+      document.getElementById("resumenHora").textContent =
+        horaInput.value || "Sin seleccionar";
     }
 
-    function showFormMessage(message) {
-      formMessage.textContent = message;
-      formMessage.classList.add("show");
+    function limpiarSeleccionHorario() {
+      horaInput.value = "";
+      actualizarResumen();
     }
 
-    function clearFormMessage() {
-      formMessage.textContent = "";
-      formMessage.classList.remove("show");
-    }
+    function dibujarHorarios(horarios) {
+      horariosContenedor.replaceChildren();
+      horariosDisponibles = horarios;
+      limpiarSeleccionHorario();
 
-    // Actualizar las opciones del selector de horarios.
-    function refreshSlots() {
-      const selectedDate = dateInput.value;
-
-      timeSelect.innerHTML = "";
-      timeSelect.disabled = true;
-
-      if (!selectedDate) {
-        timeSelect.add(
-          new Option("Primero elegí una fecha", "")
-        );
-
-        timeHint.textContent =
-          "Los horarios se mostrarán al elegir el día.";
-
+      if (!horarios.length) {
+        const mensaje = document.createElement("p");
+        mensaje.className = "sin-horarios";
+        mensaje.textContent =
+          "No hay horarios disponibles para esta fecha.";
+        horariosContenedor.appendChild(mensaje);
         return;
       }
 
-      const slots = getSlotsForDate(selectedDate);
+      horarios.forEach(function(hora) {
+        const boton = document.createElement("button");
 
-      if (slots.length === 0) {
-        timeSelect.add(
-          new Option("Día no disponible", "")
-        );
+        boton.type = "button";
+        boton.className = "horario";
+        boton.textContent = hora;
+        boton.setAttribute("aria-pressed", "false");
 
-        timeHint.textContent =
-          "Los domingos la peluquería permanece cerrada.";
+        boton.addEventListener("click", function() {
+          document.querySelectorAll(".horario").forEach(function(item) {
+            item.classList.remove("seleccionado");
+            item.setAttribute("aria-pressed", "false");
+          });
 
+          boton.classList.add("seleccionado");
+          boton.setAttribute("aria-pressed", "true");
+          horaInput.value = hora;
+          actualizarResumen();
+          limpiarEstado();
+        });
+
+        horariosContenedor.appendChild(boton);
+      });
+    }
+
+    function consultarDisponibilidad(fecha) {
+      const idConsulta = ++consultaActual;
+
+      horariosContenedor.replaceChildren();
+      limpiarSeleccionHorario();
+
+      const cargando = document.createElement("p");
+      cargando.className = "sin-horarios";
+      cargando.textContent = "Consultando horarios disponibles...";
+      horariosContenedor.appendChild(cargando);
+
+      if (!fecha) {
+        cargando.textContent = "Seleccioná una fecha para consultar.";
         return;
       }
 
-      const now = new Date();
-      const today = localDateString(now);
+      limpiarEstado();
 
-      // Si la fecha seleccionada es hoy, quitar las horas pasadas.
-      const availableSlots = selectedDate === today
-        ? slots.filter(slot => {
-            const [hour, minute] = slot.split(":").map(Number);
+      const callback = "touchDisponibilidadCallback" + idConsulta;
 
-            const slotDate = new Date(
-              now.getFullYear(),
-              now.getMonth(),
-              now.getDate(),
-              hour,
-              minute,
-              0
-            );
+      const url = new URL(API_URL);
+      url.searchParams.set("accion", "disponibilidad");
+      url.searchParams.set("fecha", fecha);
+      url.searchParams.set("callback", callback);
+      url.searchParams.set("_", String(Date.now()));
 
-            return slotDate > now;
-          })
-        : slots;
+      const script = document.createElement("script");
+      let finalizado = false;
 
-      if (availableSlots.length === 0) {
-        timeSelect.add(
-          new Option("No quedan horarios para hoy", "")
+      const temporizador = setTimeout(function() {
+        if (finalizado || idConsulta !== consultaActual) return;
+
+        finalizado = true;
+        delete window[callback];
+        script.remove();
+
+        horariosContenedor.replaceChildren();
+
+        const mensaje = document.createElement("p");
+        mensaje.className = "sin-horarios";
+        mensaje.textContent =
+          "No pudimos consultar los horarios. Revisá tu conexión e intentá nuevamente.";
+
+        horariosContenedor.appendChild(mensaje);
+        mostrarEstado(
+          "No se pudo consultar la disponibilidad. Volvé a intentarlo.",
+          "error"
         );
+      }, 15000);
 
-        timeHint.textContent =
-          "Elegí otra fecha para consultar los horarios.";
+      window[callback] = function(respuesta) {
+        if (finalizado) return;
 
-        return;
+        finalizado = true;
+        clearTimeout(temporizador);
+        delete window[callback];
+        script.remove();
+
+        if (idConsulta !== consultaActual) return;
+
+        if (!respuesta || respuesta.ok !== true ||
+            !Array.isArray(respuesta.horarios)) {
+          horariosContenedor.replaceChildren();
+
+          const mensaje = document.createElement("p");
+          mensaje.className = "sin-horarios";
+          mensaje.textContent =
+            "No se pudo obtener la disponibilidad para esta fecha.";
+
+          horariosContenedor.appendChild(mensaje);
+          mostrarEstado(
+            respuesta && respuesta.error
+              ? respuesta.error
+              : "Error al consultar los horarios.",
+            "error"
+          );
+          return;
+        }
+
+        dibujarHorarios(respuesta.horarios);
+      };
+
+      script.onerror = function() {
+        if (finalizado || idConsulta !== consultaActual) return;
+
+        finalizado = true;
+        clearTimeout(temporizador);
+        delete window[callback];
+        script.remove();
+
+        horariosContenedor.replaceChildren();
+
+        const mensaje = document.createElement("p");
+        mensaje.className = "sin-horarios";
+        mensaje.textContent =
+          "No pudimos consultar los horarios. Intentá nuevamente.";
+
+        horariosContenedor.appendChild(mensaje);
+        mostrarEstado("Error de conexión con el sistema de turnos.", "error");
+      };
+
+      script.src = url.toString();
+      document.body.appendChild(script);
+    }
+
+    fechaInput.addEventListener("change", function() {
+      consultarDisponibilidad(fechaInput.value);
+    });
+
+    fechaInput.addEventListener("input", function() {
+      if (fechaInput.value) {
+        consultarDisponibilidad(fechaInput.value);
       }
+    });
 
-      timeSelect.add(
-        new Option("Seleccioná un horario", "")
+    /*
+      El formulario se envía como POST a Apps Script mediante un iframe.
+      El navegador no puede leer de forma fiable la respuesta del iframe
+      por las restricciones de seguridad entre dominios. Por eso el sitio
+      no afirmará que el turno quedó guardado: indicará que se envió la
+      solicitud y que debe esperarse la confirmación por WhatsApp.
+    */
+
+    iframeEnvio.addEventListener("load", function() {
+      if (!envioPendiente) return;
+
+      envioPendiente = false;
+      enviando = false;
+      botonEnviar.disabled = false;
+      botonEnviar.textContent = "SOLICITAR TURNO";
+
+      mostrarEstado(
+        "La solicitud fue enviada al sistema. El turno queda pendiente hasta que TOUCH lo confirme por WhatsApp. Si no recibís respuesta, contactanos directamente.",
+        "exito"
       );
 
-      availableSlots.forEach(slot => {
-        timeSelect.add(
-          new Option(slot + " hs", slot)
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const fecha = fechaInput.value;
+      const hora = horaInput.value;
+      const observaciones =
+        document.getElementById("observaciones").value.trim();
+
+      const mensaje = [
+        "Hola, envié una solicitud de turno para TOUCH PELUQUERÍA MASCULINA.",
+        "",
+        "Nombre: " + nombre + " " + apellido,
+        "Teléfono: " + telefono,
+        "Fecha: " + fecha,
+        "Horario: " + hora,
+        observaciones ? "Observaciones: " + observaciones : "",
+        "",
+        "¿Podrían confirmarme si quedó registrado?"
+      ].filter(Boolean).join("\n");
+
+      const enlaceWhatsApp =
+        "https://wa.me/" + WHATSAPP +
+        "?text=" + encodeURIComponent(mensaje);
+
+      const abrirWhatsApp = confirm(
+        "Solicitud enviada. ¿Querés abrir WhatsApp para consultar la confirmación?"
+      );
+
+      if (abrirWhatsApp) {
+        window.open(enlaceWhatsApp, "_blank", "noopener,noreferrer");
+      }
+
+      consultarDisponibilidad(fecha);
+    });
+
+    form.addEventListener("submit", function(evento) {
+      evento.preventDefault();
+
+      if (enviando) return;
+
+      if (!form.reportValidity()) return;
+
+      const fecha = fechaInput.value;
+      const hora = horaInput.value;
+
+      if (!fecha || !hora) {
+        mostrarEstado(
+          "Seleccioná una fecha y un horario disponible antes de continuar.",
+          "error"
         );
+        return;
+      }
+
+      if (!horariosDisponibles.includes(hora)) {
+        mostrarEstado(
+          "Ese horario ya no figura como disponible. Consultá nuevamente.",
+          "error"
+        );
+        consultarDisponibilidad(fecha);
+        return;
+      }
+
+      if (fecha < fechaLocalISO()) {
+        mostrarEstado("No podés solicitar un turno en una fecha pasada.", "error");
+        return;
+      }
+
+      const datos = new FormData(form);
+
+      enviando = true;
+      botonEnviar.disabled = true;
+      botonEnviar.textContent = "ENVIANDO SOLICITUD...";
+      mostrarEstado(
+        "Enviando la solicitud. No cierres esta página.",
+        "info"
+      );
+
+      const formularioEnvio = document.createElement("form");
+      formularioEnvio.method = "POST";
+      formularioEnvio.action = API_URL;
+      formularioEnvio.target = "touchPostFrame";
+      formularioEnvio.acceptCharset = "UTF-8";
+      formularioEnvio.className = "oculto";
+
+      datos.forEach(function(valor, clave) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = clave;
+        input.value = String(valor);
+        formularioEnvio.appendChild(input);
       });
 
-      timeSelect.disabled = false;
+      const honeypot = document.createElement("input");
+      honeypot.type = "hidden";
+      honeypot.name = "website";
+      honeypot.value = "";
+      formularioEnvio.appendChild(honeypot);
 
-      timeHint.textContent =
-        "Turnos cada 30 minutos. La reserva requiere confirmación.";
-    }
+      document.body.appendChild(formularioEnvio);
 
-    // Escuchar los dos eventos para actualizar el selector.
-    dateInput.addEventListener("input", () => {
-      clearFormMessage();
-      refreshSlots();
-    });
+      envioPendiente = true;
 
-    dateInput.addEventListener("change", () => {
-      clearFormMessage();
-      refreshSlots();
-    });
-
-    // Enviar la solicitud por WhatsApp.
-    bookingForm.addEventListener("submit", event => {
-      event.preventDefault();
-      clearFormMessage();
-
-      if (!bookingForm.reportValidity()) {
-        return;
-      }
-
-      const date = dateInput.value;
-      const time = timeSelect.value;
-
-      if (
-        !date ||
-        !time ||
-        !getSlotsForDate(date).includes(time)
-      ) {
-        showFormMessage(
-          "Seleccioná una fecha y un horario válido."
+      try {
+        formularioEnvio.submit();
+      } catch (error) {
+        envioPendiente = false;
+        enviando = false;
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = "SOLICITAR TURNO";
+        mostrarEstado(
+          "No se pudo enviar la solicitud. Intentá nuevamente o escribinos por WhatsApp.",
+          "error"
         );
-
-        refreshSlots();
-        return;
       }
 
-      const [year, month, day] = date.split("-").map(Number);
-      const [hour, minute] = time.split(":").map(Number);
-
-      const selectedDateTime = new Date(
-        year,
-        month - 1,
-        day,
-        hour,
-        minute
-      );
-
-      if (selectedDateTime <= new Date()) {
-        showFormMessage(
-          "Ese horario ya pasó. Elegí otro horario disponible."
-        );
-
-        refreshSlots();
-        return;
-      }
-
-      const firstName =
-        document.getElementById("firstName").value.trim();
-
-      const lastName =
-        document.getElementById("lastName").value.trim();
-
-      const phone =
-        document.getElementById("phone").value.trim();
-
-      const notes =
-        document.getElementById("notes").value.trim();
-
-      const message = [
-        "✂️ SOLICITUD DE TURNO",
-        "TOUCH PELUQUERÍA MASCULINA",
-        "",
-        "Nombre: " + firstName,
-        "Apellido: " + lastName,
-        "Teléfono: " + phone,
-        "Fecha: " + formatDate(date),
-        "Horario solicitado: " + time + " hs",
-        "Observaciones: " + (notes || "Sin observaciones"),
-        "",
-        "Estado: pendiente de confirmación."
-      ].join("\n");
-
-      const whatsappURL =
-        "https://wa.me/" +
-        WHATSAPP_PELUQUERIA +
-        "?text=" +
-        encodeURIComponent(message);
-
-      window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
+      setTimeout(function() {
+        formularioEnvio.remove();
+      }, 1000);
     });
 
-    // Inicializar el selector al cargar la página.
-    refreshSlots();
+    actualizarResumen();
   </script>
 </body>
 </html>
