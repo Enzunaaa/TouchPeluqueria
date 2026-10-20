@@ -2,599 +2,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090a0e">
-  <title>TOUCH | Peluquería Masculina</title>
-  <meta name="description" content="Reservá tu turno en TOUCH Peluquería Masculina.">
-
-  <style>
-    :root {
-      --black:#090a0e; --panel:#11131a; --red:#e32636; --blue:#1675e8;
-      --white:#f8f8fb; --muted:#a3a7b3; --border:rgba(255,255,255,.1);
-      --green:#42d392;
-    }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      margin:0; color:var(--white);
-      background:radial-gradient(ellipse at 5% 8%,rgba(227,38,54,.12),transparent 30rem),
-      radial-gradient(ellipse at 95% 35%,rgba(22,117,232,.10),transparent 28rem),var(--black);
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      min-height:100vh; overflow-x:hidden;
-    }
-    body::before {
-      content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.12;
-      background-image:radial-gradient(rgba(255,255,255,.5) .7px,transparent .7px);
-      background-size:7px 7px; mask-image:linear-gradient(to bottom,black,transparent 75%);
-    }
-    a { color:inherit;text-decoration:none; }
-    button,input,select,textarea { font:inherit; }
-    button { -webkit-tap-highlight-color:transparent; }
-    .top-line { height:4px;background:linear-gradient(90deg,var(--red),#f04b58 48%,var(--blue)); }
-    .navbar {
-      width:min(1160px,calc(100% - 36px)); margin:auto; min-height:84px;
-      display:flex;align-items:center;justify-content:space-between;gap:20px;
-    }
-    .brand { display:flex;align-items:center;gap:13px;min-width:0; }
-    .brand-logo { width:72px;height:64px;object-fit:contain;display:block;flex-shrink:0; }
-    .brand-name { font-weight:950;letter-spacing:2px;font-size:21px;line-height:1.05; }
-    .brand-sub { color:var(--muted);font-size:9px;font-weight:800;letter-spacing:2.2px;margin-top:5px; }
-    .nav-tag {
-      color:#e7e9ef;border:1px solid var(--border);background:rgba(255,255,255,.035);
-      border-radius:99px;padding:10px 15px;font-size:11px;font-weight:800;
-      letter-spacing:1.2px;white-space:nowrap;
-    }
-    .hero {
-      width:min(1160px,calc(100% - 36px));margin:18px auto 0;min-height:390px;
-      position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;
-      border:1px solid rgba(255,255,255,.12);border-radius:28px;
-      background:linear-gradient(105deg,rgba(8,9,13,.98) 0%,rgba(8,9,13,.91) 53%,rgba(8,9,13,.45) 100%),
-      radial-gradient(ellipse at 80% 35%,rgba(22,117,232,.24),transparent 38%),
-      linear-gradient(135deg,#242630,#0a0b10 70%);
-      box-shadow:0 25px 75px rgba(0,0,0,.28);
-    }
-    .hero::before {
-      content:"";position:absolute;z-index:-1;right:-85px;top:-135px;width:440px;height:440px;
-      border-radius:50%;border:1px solid rgba(255,255,255,.12);
-      background:repeating-conic-gradient(from 0deg,transparent 0deg 14deg,rgba(255,255,255,.07) 14.3deg 14.8deg,transparent 15deg 30deg);
-      mask-image:radial-gradient(circle,transparent 0 13%,black 13.5% 14%,transparent 14.5% 29%,black 29.5% 30%,transparent 30.5% 45%,black 45.5% 46%,transparent 46.5% 100%);
-      opacity:.65;
-    }
-    .hero::after {
-      content:"";position:absolute;right:11%;bottom:-150px;width:250px;height:250px;
-      border:1px solid rgba(22,117,232,.25);border-radius:50%;
-      box-shadow:0 0 0 25px rgba(22,117,232,.025),0 0 0 50px rgba(22,117,232,.025);z-index:-1;
-    }
-    .hero-content { padding:52px clamp(24px,6vw,74px);max-width:720px; }
-    .eyebrow {
-      display:inline-flex;align-items:center;gap:9px;color:#ff7d87;font-size:10px;
-      font-weight:900;letter-spacing:2.2px;text-transform:uppercase;
-    }
-    .eyebrow::before { content:"";width:25px;height:2px;background:var(--red); }
-    h1 {
-      margin:19px 0 15px;font-size:clamp(46px,7.6vw,84px);font-weight:1000;
-      letter-spacing:-4px;line-height:.91;text-transform:uppercase;
-    }
-    h1 .red { color:var(--red); }
-    .hero-copy { color:#c3c5ce;font-size:15px;line-height:1.8;max-width:450px;margin:0; }
-    .hero-actions { display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px; }
-    .btn {
-      border:0;border-radius:12px;min-height:48px;padding:0 20px;display:inline-flex;
-      align-items:center;justify-content:center;gap:9px;font-size:12px;font-weight:900;
-      letter-spacing:.5px;cursor:pointer;transition:transform .18s,filter .18s;
-    }
-    .btn:hover { transform:translateY(-2px);filter:brightness(1.08); }
-    .btn:disabled { opacity:.45;cursor:not-allowed;transform:none; }
-    .btn-primary {
-      color:white;background:linear-gradient(135deg,#f03a49,#b8172a);
-      box-shadow:0 9px 25px rgba(227,38,54,.2);
-    }
-    .btn-secondary { color:white;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.16); }
-    .hero-stamp {
-      position:absolute;right:34px;bottom:30px;width:74px;height:74px;border-radius:50%;
-      border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transform:rotate(-12deg);
-      background:rgba(7,8,12,.5);color:#d8e8ff;font-size:9px;font-weight:900;
-      letter-spacing:1px;text-align:center;line-height:1.4;
-    }
-    .hero-stamp strong { display:block;color:var(--red);font-size:20px;letter-spacing:0; }
-    .features {
-      width:min(1160px,calc(100% - 36px));margin:20px auto 0;
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-    }
-    .feature {
-      display:flex;align-items:center;gap:13px;min-width:0;border:1px solid var(--border);
-      border-radius:16px;background:rgba(255,255,255,.025);padding:17px;
-    }
-    .feature-icon {
-      width:39px;height:39px;flex-shrink:0;display:grid;place-items:center;border-radius:12px;
-      color:white;background:rgba(227,38,54,.13);border:1px solid rgba(227,38,54,.2);font-size:18px;
-    }
-    .feature:nth-child(2) .feature-icon { background:rgba(22,117,232,.13);border-color:rgba(22,117,232,.24); }
-    .feature strong { display:block;font-size:12px; }
-    .feature small { display:block;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.5; }
-    .booking-section {
-      width:min(1160px,calc(100% - 36px));margin:76px auto 70px;
-      display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:36px;align-items:start;
-    }
-    .section-intro { padding-top:10px; }
-    .section-intro h2 { font-size:clamp(31px,4vw,47px);line-height:1;letter-spacing:-1.8px;margin:16px 0;text-transform:uppercase; }
-    .section-intro h2 span { color:var(--red); }
-    .section-intro p { color:var(--muted);line-height:1.85;font-size:14px;max-width:390px; }
-    .steps { display:grid;gap:15px;margin-top:28px; }
-    .step { display:flex;align-items:center;gap:13px;color:#d9dbe2;font-size:12px; }
-    .step-number {
-      width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#1b1d26;
-      color:#ff727e;border:1px solid rgba(227,38,54,.25);font-weight:900;flex-shrink:0;
-    }
-    .booking-card {
-      position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(145deg,rgba(24,26,35,.98),rgba(14,15,21,.98));
-      border-radius:24px;padding:clamp(20px,4vw,32px);box-shadow:0 25px 70px rgba(0,0,0,.24);
-    }
-    .booking-card::before {
-      content:"";position:absolute;top:0;left:0;right:0;height:3px;
-      background:linear-gradient(90deg,var(--red),var(--blue));
-    }
-    .card-heading { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px; }
-    .card-heading h3 { margin:0;font-size:20px;letter-spacing:-.4px; }
-    .card-heading p { margin:6px 0 0;color:var(--muted);font-size:11px; }
-    .live-dot { display:inline-flex;align-items:center;gap:7px;color:#a4e9c8;font-size:9px;font-weight:900;white-space:nowrap; }
-    .live-dot::before { content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(66,211,146,.5); }
-    .field { margin-bottom:17px; }
-    .field label { display:block;color:#e4e5eb;font-size:11px;font-weight:800;margin-bottom:8px; }
-    .field input,.field select,.field textarea {
-      width:100%;min-height:47px;padding:12px 13px;border-radius:11px;
-      border:1px solid rgba(255,255,255,.12);background:#0c0d12;color:white;outline:none;
-      transition:border-color .2s,box-shadow .2s;
-    }
-    .field input:focus,.field select:focus,.field textarea:focus {
-      border-color:rgba(227,38,54,.8);box-shadow:0 0 0 3px rgba(227,38,54,.1);
-    }
-    .field input::placeholder,.field textarea::placeholder { color:#777b87; }
-    .field input[type="date"] { color-scheme:dark; }
-    .field textarea { resize:vertical;min-height:82px; }
-    .field select:disabled { opacity:.55; }
-    .form-grid { display:grid;grid-template-columns:1fr 1fr;gap:0 13px; }
-    .availability-top { display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 11px; }
-    .availability-top label { margin:0; }
-    .availability-top span { color:var(--muted);font-size:10px; }
-    .slots { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-height:50px; }
-    .slot {
-      min-height:41px;border:1px solid rgba(255,255,255,.13);border-radius:9px;
-      background:rgba(255,255,255,.035);color:#e6e7ec;font-size:11px;font-weight:800;
-      cursor:pointer;transition:.16s;
-    }
-    .slot:hover { border-color:var(--red); }
-    .slot.selected { color:white;background:var(--red);border-color:var(--red);box-shadow:0 5px 18px rgba(227,38,54,.2); }
-    .slot:disabled { opacity:.35;cursor:not-allowed;text-decoration:line-through; }
-    .slots-message {
-      grid-column:1/-1;color:var(--muted);background:rgba(255,255,255,.025);
-      border:1px dashed var(--border);border-radius:10px;padding:15px;font-size:11px;line-height:1.6;
-    }
-    .selected-summary {
-      display:none;align-items:center;gap:10px;border:1px solid rgba(66,211,146,.2);
-      background:rgba(66,211,146,.06);border-radius:11px;padding:12px;margin-top:13px;color:#c8f4df;font-size:11px;
-    }
-    .selected-summary.show { display:flex; }
-    .submit-btn { width:100%;margin-top:12px;min-height:52px; }
-    .fine-print { text-align:center;font-size:10px;color:#9296a2;line-height:1.7;margin:13px 0 0; }
-    .form-message { display:none;border-radius:11px;padding:13px;margin-top:15px;font-size:12px;line-height:1.6; }
-    .form-message.show { display:block; }
-    .form-message.error { color:#ffc2c7;border:1px solid rgba(227,38,54,.3);background:rgba(227,38,54,.08); }
-    .form-message.success { color:#baf2d5;border:1px solid rgba(66,211,146,.25);background:rgba(66,211,146,.08); }
-    .footer { border-top:1px solid var(--border);background:rgba(0,0,0,.25);padding:25px 18px; }
-    .footer-inner {
-      width:min(1160px,100%);margin:auto;display:flex;justify-content:space-between;
-      align-items:center;gap:15px;color:var(--muted);font-size:10px;
-    }
-    .footer strong { color:white;letter-spacing:1.5px; }
-    .footer-accent { color:#ff6672; }
-    .web-decoration { position:absolute;width:100px;height:100px;opacity:.25;pointer-events:none; }
-    .web-decoration svg { width:100%;height:100%; }
-    .web-top { top:0;right:0; }
-    .web-bottom { bottom:0;left:0;transform:rotate(180deg); }
-
-    @media(max-width:820px) {
-      .hero { min-height:360px; }
-      .hero-stamp { right:20px;bottom:20px;width:62px;height:62px; }
-      .booking-section { grid-template-columns:1fr;gap:27px;margin-top:55px; }
-      .section-intro p { max-width:560px; }
-      .steps { grid-template-columns:repeat(3,1fr);gap:10px; }
-      .step { align-items:flex-start;line-height:1.5; }
-      .features { gap:8px; }
-      .feature { padding:12px;gap:9px; }
-      .feature-icon { width:34px;height:34px; }
-    }
-    @media(max-width:560px) {
-      .navbar { min-height:72px;width:calc(100% - 28px); }
-      .brand-logo { width:57px;height:52px; }
-      .brand-name { font-size:18px; }
-      .brand-sub { font-size:8px;letter-spacing:1.6px; }
-      .nav-tag { padding:8px 10px;font-size:9px; }
-      .hero { width:calc(100% - 24px);border-radius:21px;min-height:355px; }
-      .hero-content { padding:38px 23px 46px; }
-      h1 { letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px); }
-      .hero-copy { font-size:13px;max-width:310px; }
-      .hero-stamp { opacity:.8;width:53px;height:53px;right:15px;bottom:13px;font-size:7px; }
-      .hero-stamp strong { font-size:15px; }
-      .features { width:calc(100% - 24px);grid-template-columns:1fr;margin-top:12px; }
-      .feature { padding:12px 14px; }
-      .booking-section { width:calc(100% - 24px);margin:52px auto; }
-      .steps { grid-template-columns:1fr;gap:13px; }
-      .booking-card { padding:20px 15px;border-radius:19px; }
-      .card-heading h3 { font-size:18px; }
-      .form-grid { grid-template-columns:1fr;gap:0; }
-      .slots { grid-template-columns:repeat(3,minmax(0,1fr)); }
-      .footer-inner { flex-direction:column;text-align:center; }
-    }
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after { scroll-behavior:auto!important;transition:none!important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090a0e">
+<title>TOUCH | Peluquería Masculina</title>
+<meta name="description" content="Reservá tu turno en TOUCH Peluquería Masculina.">
+<style>
+:root{--black:#090a0e;--panel:#11131a;--red:#e32636;--blue:#1675e8;--white:#f8f8fb;--muted:#a3a7b3;--border:rgba(255,255,255,.1);--green:#42d392}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--white);background:radial-gradient(ellipse at 5% 8%,rgba(227,38,54,.12),transparent 30rem),radial-gradient(ellipse at 95% 35%,rgba(22,117,232,.10),transparent 28rem),var(--black);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.12;background-image:radial-gradient(rgba(255,255,255,.5) .7px,transparent .7px);background-size:7px 7px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.top-line{height:4px;background:linear-gradient(90deg,var(--red),#f04b58 48%,var(--blue))}
+.navbar{width:min(1160px,calc(100% - 36px));margin:auto;min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:13px;min-width:0}
+.brand-logo{width:72px;height:64px;object-fit:contain;display:block;flex-shrink:0}
+.brand-name{font-weight:950;letter-spacing:2px;font-size:21px;line-height:1.05}
+.brand-sub{color:var(--muted);font-size:9px;font-weight:800;letter-spacing:2.2px;margin-top:5px}
+.nav-tag{color:#e7e9ef;border:1px solid var(--border);background:rgba(255,255,255,.035);border-radius:99px;padding:10px 15px;font-size:11px;font-weight:800;letter-spacing:1.2px;white-space:nowrap}
+.hero{width:min(1160px,calc(100% - 36px));margin:18px auto 0;min-height:390px;position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:linear-gradient(105deg,rgba(8,9,13,.98) 0%,rgba(8,9,13,.91) 53%,rgba(8,9,13,.45) 100%),radial-gradient(ellipse at 80% 35%,rgba(22,117,232,.24),transparent 38%),linear-gradient(135deg,#242630,#0a0b10 70%);box-shadow:0 25px 75px rgba(0,0,0,.28)}
+.hero::before{content:"";position:absolute;z-index:-1;right:-85px;top:-135px;width:440px;height:440px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:repeating-conic-gradient(from 0deg,transparent 0deg 14deg,rgba(255,255,255,.07) 14.3deg 14.8deg,transparent 15deg 30deg);mask-image:radial-gradient(circle,transparent 0 13%,black 13.5% 14%,transparent 14.5% 29%,black 29.5% 30%,transparent 30.5% 45%,black 45.5% 46%,transparent 46.5% 100%);opacity:.65}
+.hero::after{content:"";position:absolute;right:11%;bottom:-150px;width:250px;height:250px;border:1px solid rgba(22,117,232,.25);border-radius:50%;box-shadow:0 0 0 25px rgba(22,117,232,.025),0 0 0 50px rgba(22,117,232,.025);z-index:-1}
+.hero-content{padding:52px clamp(24px,6vw,74px);max-width:720px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#ff7d87;font-size:10px;font-weight:900;letter-spacing:2.2px;text-transform:uppercase}
+.eyebrow::before{content:"";width:25px;height:2px;background:var(--red)}
+h1{margin:19px 0 15px;font-size:clamp(46px,7.6vw,84px);font-weight:1000;letter-spacing:-4px;line-height:.91;text-transform:uppercase}
+h1 .red{color:var(--red)}
+.hero-copy{color:#c3c5ce;font-size:15px;line-height:1.8;max-width:450px;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px}
+.btn{border:0;border-radius:12px;min-height:48px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:12px;font-weight:900;letter-spacing:.5px;cursor:pointer;transition:transform .18s,filter .18s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-primary{color:white;background:linear-gradient(135deg,#f03a49,#b8172a);box-shadow:0 9px 25px rgba(227,38,54,.2)}
+.btn-secondary{color:white;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.16)}
+.hero-stamp{position:absolute;right:34px;bottom:30px;width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transform:rotate(-12deg);background:rgba(7,8,12,.5);color:#d8e8ff;font-size:9px;font-weight:900;letter-spacing:1px;text-align:center;line-height:1.4}
+.hero-stamp strong{display:block;color:var(--red);font-size:20px;letter-spacing:0}
+.features{width:min(1160px,calc(100% - 36px));margin:20px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feature{display:flex;align-items:center;gap:13px;min-width:0;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.025);padding:17px}
+.feature-icon{width:39px;height:39px;flex-shrink:0;display:grid;place-items:center;border-radius:12px;color:white;background:rgba(227,38,54,.13);border:1px solid rgba(227,38,54,.2);font-size:18px}
+.feature:nth-child(2) .feature-icon{background:rgba(22,117,232,.13);border-color:rgba(22,117,232,.24)}
+.feature strong{display:block;font-size:12px}
+.feature small{display:block;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.5}
+.booking-section{width:min(1160px,calc(100% - 36px));margin:76px auto 70px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:36px;align-items:start}
+.section-intro{padding-top:10px}
+.section-intro h2{font-size:clamp(31px,4vw,47px);line-height:1;letter-spacing:-1.8px;margin:16px 0;text-transform:uppercase}
+.section-intro h2 span{color:var(--red)}
+.section-intro p{color:var(--muted);line-height:1.85;font-size:14px;max-width:390px}
+.steps{display:grid;gap:15px;margin-top:28px}
+.step{display:flex;align-items:center;gap:13px;color:#d9dbe2;font-size:12px}
+.step-number{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#1b1d26;color:#ff727e;border:1px solid rgba(227,38,54,.25);font-weight:900;flex-shrink:0}
+.booking-card{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(24,26,35,.98),rgba(14,15,21,.98));border-radius:24px;padding:clamp(20px,4vw,32px);box-shadow:0 25px 70px rgba(0,0,0,.24)}
+.booking-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--blue))}
+.card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.card-heading h3{margin:0;font-size:20px;letter-spacing:-.4px}
+.card-heading p{margin:6px 0 0;color:var(--muted);font-size:11px}
+.live-dot{display:inline-flex;align-items:center;gap:7px;color:#a4e9c8;font-size:9px;font-weight:900;white-space:nowrap}
+.live-dot::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(66,211,146,.5)}
+.field{margin-bottom:17px}
+.field>label,.field-label{display:block;color:#e4e5eb;font-size:11px;font-weight:800;margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;min-height:47px;padding:12px 13px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:#0c0d12;color:white;outline:none;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(227,38,54,.8);box-shadow:0 0 0 3px rgba(227,38,54,.1)}
+.field input::placeholder,.field textarea::placeholder{color:#777b87}
+.field input[type="date"]{color-scheme:dark}
+.field textarea{resize:vertical;min-height:82px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}
+.availability-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 11px}
+.availability-top label{margin:0}
+.availability-top span{color:var(--muted);font-size:10px}
+.slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-height:50px}
+.slot{min-height:41px;border:1px solid rgba(255,255,255,.13);border-radius:9px;background:rgba(255,255,255,.035);color:#e6e7ec;font-size:11px;font-weight:800;cursor:pointer;transition:.16s}
+.slot:hover{border-color:var(--red)}
+.slot.selected{color:white;background:var(--red);border-color:var(--red);box-shadow:0 5px 18px rgba(227,38,54,.2)}
+.slot:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.slots-message{grid-column:1/-1;color:var(--muted);background:rgba(255,255,255,.025);border:1px dashed var(--border);border-radius:10px;padding:15px;font-size:11px;line-height:1.6}
+.selected-summary{display:none;align-items:center;gap:10px;border:1px solid rgba(66,211,146,.2);background:rgba(66,211,146,.06);border-radius:11px;padding:12px;margin-top:13px;color:#c8f4df;font-size:11px}
+.selected-summary.show{display:flex}
+.submit-btn{width:100%;margin-top:12px;min-height:52px}
+.fine-print{text-align:center;font-size:10px;color:#9296a2;line-height:1.7;margin:13px 0 0}
+.form-message{display:none;border-radius:11px;padding:13px;margin-top:15px;font-size:12px;line-height:1.6}
+.form-message.show{display:block}
+.form-message.error{color:#ffc2c7;border:1px solid rgba(227,38,54,.3);background:rgba(227,38,54,.08)}
+.form-message.success{color:#baf2d5;border:1px solid rgba(66,211,146,.25);background:rgba(66,211,146,.08)}
+.service-options{display:grid;gap:10px}
+.service-option{position:relative}
+.service-option>input[type=radio]{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.service-option>label{display:block;border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:14px;background:rgba(255,255,255,.025);cursor:pointer;transition:border-color .2s,background .2s}
+.service-option>label:hover{border-color:rgba(227,38,54,.7)}
+.service-option>input:checked+label{border-color:var(--red);background:rgba(227,38,54,.1);box-shadow:0 0 0 1px rgba(227,38,54,.18)}
+.service-title{display:block;font-size:13px;font-weight:900;color:#fff}
+.service-detail-toggle{display:inline-block;color:#ff8790;font-size:10px;font-weight:800;margin-top:8px;text-decoration:underline;text-underline-offset:3px}
+.service-extra{display:none;color:#c5c8d2;font-size:11px;font-weight:500;line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)}
+.service-option details[open] .service-extra{display:block}
+.service-option details summary{list-style:none}
+.service-option details summary::-webkit-details-marker{display:none}
+.service-option details summary::after{content:"＋";float:right;color:#ff8790;font-weight:900}
+.service-option details[open] summary::after{content:"−"}
+.footer{border-top:1px solid var(--border);background:rgba(0,0,0,.25);padding:25px 18px}
+.footer-inner{width:min(1160px,100%);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px;color:var(--muted);font-size:10px}
+.footer strong{color:white;letter-spacing:1.5px}
+.footer-accent{color:#ff6672}
+.web-decoration{position:absolute;width:100px;height:100px;opacity:.25;pointer-events:none}
+.web-decoration svg{width:100%;height:100%}
+.web-top{top:0;right:0}
+.web-bottom{bottom:0;left:0;transform:rotate(180deg)}
+@media(max-width:820px){.hero{min-height:360px}.hero-stamp{right:20px;bottom:20px;width:62px;height:62px}.booking-section{grid-template-columns:1fr;gap:27px;margin-top:55px}.section-intro p{max-width:560px}.steps{grid-template-columns:repeat(3,1fr);gap:10px}.step{align-items:flex-start;line-height:1.5}.features{gap:8px}.feature{padding:12px;gap:9px}.feature-icon{width:34px;height:34px}}
+@media(max-width:560px){.navbar{min-height:72px;width:calc(100% - 28px)}.brand-logo{width:57px;height:52px}.brand-name{font-size:18px}.brand-sub{font-size:8px;letter-spacing:1.6px}.nav-tag{padding:8px 10px;font-size:9px}.hero{width:calc(100% - 24px);border-radius:21px;min-height:355px}.hero-content{padding:38px 23px 46px}h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}.hero-copy{font-size:13px;max-width:310px}.hero-stamp{opacity:.8;width:53px;height:53px;right:15px;bottom:13px;font-size:7px}.hero-stamp strong{font-size:15px}.features{width:calc(100% - 24px);grid-template-columns:1fr;margin-top:12px}.feature{padding:12px 14px}.booking-section{width:calc(100% - 24px);margin:52px auto}.steps{grid-template-columns:1fr;gap:13px}.booking-card{padding:20px 15px;border-radius:19px}.card-heading h3{font-size:18px}.form-grid{grid-template-columns:1fr;gap:0}.slots{grid-template-columns:repeat(3,minmax(0,1fr))}.footer-inner{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <div class="top-line"></div>
-  <header class="navbar">
-    <a class="brand" href="#" aria-label="TOUCH Peluquería Masculina, inicio">
-      <img class="brand-logo" src="logo.png" alt="Logo TOUCH Peluquería Masculina">
-      <div>
-        <div class="brand-name">TOUCH</div>
-        <div class="brand-sub">PELUQUERÍA MASCULINA</div>
-      </div>
-    </a>
-    <a class="nav-tag" href="#reservar">RESERVÁ TU TURNO ↗</a>
-  </header>
+<div class="top-line"></div>
+<header class="navbar">
+<a class="brand" href="#" aria-label="TOUCH Peluquería Masculina, inicio">
+<img class="brand-logo" src="logo.png" alt="Logo TOUCH Peluquería Masculina">
+<div><div class="brand-name">TOUCH</div><div class="brand-sub">PELUQUERÍA MASCULINA</div></div>
+</a>
+<a class="nav-tag" href="#reservar">RESERVÁ TU TURNO ↗</a>
+</header>
+<main>
+<section class="hero">
+<div class="web-decoration web-top" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8"><path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/><path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/></svg></div>
+<div class="hero-content">
+<div class="eyebrow">TU ESTILO · TU IDENTIDAD</div>
+<h1>EL DETALLE<br>HACE AL <span class="red">LOOK.</span></h1>
+<p class="hero-copy">Un buen corte cambia todo. Elegí tu día, encontrá tu horario y vení a vivir la experiencia TOUCH.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#reservar">RESERVAR TURNO <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#como-funciona">CÓMO FUNCIONA</a></div>
+</div>
+<div class="hero-stamp" aria-hidden="true"><div><strong>✳</strong> FRESH<br>LOOK</div></div>
+</section>
+<section class="features" aria-label="Ventajas de reservar">
+<div class="feature"><div class="feature-icon" aria-hidden="true">✂</div><div><strong>Tu estilo, a tu manera</strong><small>Un espacio pensado para vos.</small></div></div>
+<div class="feature"><div class="feature-icon" aria-hidden="true">◷</div><div><strong>Elegí tu horario</strong><small>Consultá los turnos disponibles.</small></div></div>
+<div class="feature"><div class="feature-icon" aria-hidden="true">✓</div><div><strong>Reservá en minutos</strong><small>Completá tus datos y listo.</small></div></div>
+</section>
+<section class="booking-section" id="reservar">
+<div class="section-intro" id="como-funciona">
+<div class="eyebrow">AGENDA ONLINE</div>
+<h2>Tu próximo<br>look empieza <span>acá.</span></h2>
+<p>Reservá de forma simple. Seleccioná la fecha, elegí un horario disponible y completá tus datos para solicitar el turno.</p>
+<div class="steps">
+<div class="step"><span class="step-number">01</span><span>Elegí la fecha que te quede cómoda.</span></div>
+<div class="step"><span class="step-number">02</span><span>Seleccioná uno de los horarios libres.</span></div>
+<div class="step"><span class="step-number">03</span><span>Dejanos tus datos y aguardá la confirmación.</span></div>
+</div>
+</div>
+<div class="booking-card">
+<div class="web-decoration web-bottom" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8"><path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/><path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/></svg></div>
+<div class="card-heading"><div><h3>Reservá tu turno</h3><p>Completá los datos para solicitarlo.</p></div><span class="live-dot">AGENDA ONLINE</span></div>
+<form id="bookingForm" autocomplete="on">
+<div class="form-grid">
+<div class="field"><label for="nombre">Nombre *</label><input id="nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="given-name" required maxlength="60"></div>
+<div class="field"><label for="apellido">Apellido *</label><input id="apellido" name="apellido" type="text" placeholder="Tu apellido" autocomplete="family-name" required maxlength="60"></div>
+</div>
+<div class="field"><label for="telefono">WhatsApp / Teléfono *</label><input id="telefono" name="telefono" type="tel" placeholder="Ej.: 3585 123456" autocomplete="tel" required maxlength="30"></div>
 
-  <main>
-    <section class="hero">
-      <div class="web-decoration web-top" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8">
-          <path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/>
-          <path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/>
-        </svg>
-      </div>
-      <div class="hero-content">
-        <div class="eyebrow">TU ESTILO · TU IDENTIDAD</div>
-        <h1>EL DETALLE<br>HACE AL <span class="red">LOOK.</span></h1>
-        <p class="hero-copy">Un buen corte cambia todo. Elegí tu día, encontrá tu horario y vení a vivir la experiencia TOUCH.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#reservar">RESERVAR TURNO <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-secondary" href="#como-funciona">CÓMO FUNCIONA</a>
-        </div>
-      </div>
-      <div class="hero-stamp" aria-hidden="true"><div><strong>✳</strong> FRESH<br>LOOK</div></div>
-    </section>
+<div class="field">
+<div class="field-label">¿Qué servicio querés realizarte? *</div>
+<div class="service-options" role="radiogroup" aria-label="Elegí un solo servicio">
+<div class="service-option"><input id="servicioCorte" type="radio" name="servicio" value="Corte de pelo" required><label for="servicioCorte"><span class="service-title">Corte de pelo</span></label></div>
+<div class="service-option"><input id="servicioCorteBarba" type="radio" name="servicio" value="Corte de pelo y barba" required><label for="servicioCorteBarba"><span class="service-title">Corte de pelo y barba</span></label></div>
+<div class="service-option"><input id="servicioBarba" type="radio" name="servicio" value="Solo barba" required><label for="servicioBarba"><span class="service-title">Solo barba</span></label></div>
+<div class="service-option">
+<input id="servicioTouchPlus" type="radio" name="servicio" value="Atención TOUCH+" required>
+<label for="servicioTouchPlus">
+<details>
+<summary><span class="service-title">Atención TOUCH+</span><span class="service-detail-toggle">Ver detalle</span></summary>
+<div class="service-extra">Corte de pelo completo + barba + mascarilla + vapor de ozono para cara + toalla caliente.</div>
+</details>
+</label>
+</div>
+<div class="service-option">
+<input id="servicioTouch" type="radio" name="servicio" value="Atención TOUCH" required>
+<label for="servicioTouch">
+<details>
+<summary><span class="service-title">Atención TOUCH</span><span class="service-detail-toggle">Ver detalle</span></summary>
+<div class="service-extra">Corte de pelo completo + mascarilla + vapor de ozono para cara + toalla caliente.</div>
+</details>
+</label>
+</div>
+</div>
+</div>
 
-    <section class="features" aria-label="Ventajas de reservar">
-      <div class="feature"><div class="feature-icon" aria-hidden="true">✂</div><div><strong>Tu estilo, a tu manera</strong><small>Un espacio pensado para vos.</small></div></div>
-      <div class="feature"><div class="feature-icon" aria-hidden="true">◷</div><div><strong>Elegí tu horario</strong><small>Consultá los turnos disponibles.</small></div></div>
-      <div class="feature"><div class="feature-icon" aria-hidden="true">✓</div><div><strong>Reservá en minutos</strong><small>Completá tus datos y listo.</small></div></div>
-    </section>
+<div class="field"><label for="fecha">Fecha del turno *</label><input id="fecha" name="fecha" type="date" required></div>
+<div class="field">
+<div class="availability-top"><label>Horarios disponibles *</label><span id="slotDateLabel">Elegí una fecha</span></div>
+<div id="slots" class="slots" aria-live="polite"><div class="slots-message">Seleccioná una fecha para consultar los horarios libres.</div></div>
+<input id="hora" name="hora" type="hidden" required>
+<div id="selectedSummary" class="selected-summary"><span aria-hidden="true">✓</span><span id="selectedSummaryText"></span></div>
+</div>
+<div class="field"><label for="observaciones">¿Querés dejarnos algún comentario? (opcional)</label><textarea id="observaciones" name="observaciones" placeholder="Un detalle que debamos saber..." maxlength="500"></textarea></div>
+<button id="submitBtn" class="btn btn-primary submit-btn" type="submit">SOLICITAR TURNO ↗</button>
+<p class="fine-print">El turno queda sujeto a confirmación. Te enviaremos un mensaje por WhatsApp para confirmarlo.</p>
+<div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+</form>
+</div>
+</section>
+</main>
+<footer class="footer"><div class="footer-inner"><div><strong>TOUCH</strong> <span class="footer-accent">/</span> PELUQUERÍA MASCULINA</div><div>Tu estilo habla por vos.</div></div></footer>
+<iframe name="submitFrame" id="submitFrame" title="Envío de reserva" style="display:none"></iframe>
+<script>
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyCnjh4Z_cugIZypGM_xWtqd4dIpeu5o-EdruxriQM-X7SZyuJF4BxqtMf8K-DTyQJ2NA/exec";
+const WHATSAPP_NEGOCIO="5493585021663";
+const fechaInput=document.getElementById("fecha");
+const slotsContainer=document.getElementById("slots");
+const horaInput=document.getElementById("hora");
+const form=document.getElementById("bookingForm");
+const submitBtn=document.getElementById("submitBtn");
+const messageBox=document.getElementById("formMessage");
+const summary=document.getElementById("selectedSummary");
+const summaryText=document.getElementById("selectedSummaryText");
+const slotDateLabel=document.getElementById("slotDateLabel");
+let selectedSlot="";
+let loadingSlots=false;
+let submitting=false;
 
-    <section class="booking-section" id="reservar">
-      <div class="section-intro" id="como-funciona">
-        <div class="eyebrow">AGENDA ONLINE</div>
-        <h2>Tu próximo<br>look empieza <span>acá.</span></h2>
-        <p>Reservá de forma simple. Seleccioná la fecha, elegí un horario disponible y completá tus datos para solicitar el turno.</p>
-        <div class="steps">
-          <div class="step"><span class="step-number">01</span><span>Elegí la fecha que te quede cómoda.</span></div>
-          <div class="step"><span class="step-number">02</span><span>Seleccioná uno de los horarios libres.</span></div>
-          <div class="step"><span class="step-number">03</span><span>Dejanos tus datos y aguardá la confirmación.</span></div>
-        </div>
-      </div>
+function localDateString(date){const y=date.getFullYear();const m=String(date.getMonth()+1).padStart(2,"0");const d=String(date.getDate()).padStart(2,"0");return `${y}-${m}-${d}`;}
+function formatDate(dateString){if(!dateString)return "";const parts=dateString.split("-").map(Number);const date=new Date(parts[0],parts[1]-1,parts[2]);return date.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});}
+function setMessage(text,type){messageBox.textContent=text;messageBox.className=`form-message show ${type||""}`;}
+function clearMessage(){messageBox.textContent="";messageBox.className="form-message";}
+function resetSelectedSlot(){selectedSlot="";horaInput.value="";summary.classList.remove("show");}
+function showSlotsMessage(text){slotsContainer.innerHTML="";const element=document.createElement("div");element.className="slots-message";element.textContent=text;slotsContainer.appendChild(element);}
+function selectSlot(time,button){selectedSlot=time;horaInput.value=time;slotsContainer.querySelectorAll(".slot").forEach(slot=>{slot.classList.toggle("selected",slot===button);slot.setAttribute("aria-pressed",slot===button?"true":"false");});summaryText.textContent=`${formatDate(fechaInput.value)} · ${time} hs`;summary.classList.add("show");clearMessage();}
 
-      <div class="booking-card">
-        <div class="web-decoration web-bottom" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8">
-            <path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/>
-            <path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/>
-          </svg>
-        </div>
-        <div class="card-heading">
-          <div><h3>Reservá tu turno</h3><p>Completá los datos para solicitarlo.</p></div>
-          <span class="live-dot">AGENDA ONLINE</span>
-        </div>
+function jsonpRequest(url,timeoutMs=15000){return new Promise((resolve,reject)=>{const callbackName="touchCallback_"+Date.now()+"_"+Math.floor(Math.random()*100000);const script=document.createElement("script");const separator=url.includes("?")?"&":"?";let finished=false;const timer=setTimeout(()=>finish(new Error("La consulta tardó demasiado.")),timeoutMs);function finish(error,data){if(finished)return;finished=true;clearTimeout(timer);try{delete window[callbackName];}catch(_){window[callbackName]=undefined;}script.remove();if(error)reject(error);else resolve(data);}window[callbackName]=data=>finish(null,data);script.onerror=()=>finish(new Error("No se pudo conectar con la agenda."));script.src=url+separator+"callback="+encodeURIComponent(callbackName);document.head.appendChild(script);});}
 
-        <form id="bookingForm" autocomplete="on">
-          <div class="form-grid">
-            <div class="field">
-              <label for="nombre">Nombre *</label>
-              <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="given-name" required maxlength="60">
-            </div>
-            <div class="field">
-              <label for="apellido">Apellido *</label>
-              <input id="apellido" name="apellido" type="text" placeholder="Tu apellido" autocomplete="family-name" required maxlength="60">
-            </div>
-          </div>
-          <div class="field">
-            <label for="telefono">WhatsApp / Teléfono *</label>
-            <input id="telefono" name="telefono" type="tel" placeholder="Ej.: 3585 123456" autocomplete="tel" required maxlength="30">
-          </div>
-          <div class="field">
-            <label for="fecha">Fecha del turno *</label>
-            <input id="fecha" name="fecha" type="date" required>
-          </div>
-          <div class="field">
-            <div class="availability-top">
-              <label>Horarios disponibles *</label>
-              <span id="slotDateLabel">Elegí una fecha</span>
-            </div>
-            <div id="slots" class="slots" aria-live="polite">
-              <div class="slots-message">Seleccioná una fecha para consultar los horarios libres.</div>
-            </div>
-            <input id="hora" name="hora" type="hidden" required>
-            <div id="selectedSummary" class="selected-summary">
-              <span aria-hidden="true">✓</span><span id="selectedSummaryText"></span>
-            </div>
-          </div>
-          <div class="field">
-            <label for="observaciones">¿Querés dejarnos algún comentario? (opcional)</label>
-            <textarea id="observaciones" name="observaciones" placeholder="Un detalle que debamos saber..." maxlength="500"></textarea>
-          </div>
-          <button id="submitBtn" class="btn btn-primary submit-btn" type="submit">SOLICITAR TURNO ↗</button>
-          <p class="fine-print">El turno queda sujeto a confirmación. Te enviaremos un mensaje por WhatsApp para confirmarlo.</p>
-          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
-  </main>
+async function loadSlots(){
+const date=fechaInput.value;resetSelectedSlot();clearMessage();
+if(!date){slotDateLabel.textContent="Elegí una fecha";showSlotsMessage("Seleccioná una fecha para consultar los horarios libres.");return;}
+slotDateLabel.textContent=formatDate(date);
+if(date<localDateString(new Date())){showSlotsMessage("Elegí una fecha de hoy en adelante.");return;}
+loadingSlots=true;showSlotsMessage("Consultando horarios disponibles…");
+try{
+const url=SCRIPT_URL+"?accion=disponibilidad&fecha="+encodeURIComponent(date);
+const response=await jsonpRequest(url);
+if(!response||response.ok!==true||!Array.isArray(response.horarios))throw new Error("La agenda respondió con un formato inesperado.");
+slotsContainer.innerHTML="";
+if(response.horarios.length===0){showSlotsMessage("No hay horarios disponibles para esta fecha. Probá con otro día.");return;}
+response.horarios.forEach(time=>{const button=document.createElement("button");button.type="button";button.className="slot";button.textContent=time;button.setAttribute("aria-pressed","false");button.addEventListener("click",()=>selectSlot(time,button));slotsContainer.appendChild(button);});
+}catch(error){showSlotsMessage("No pudimos cargar los horarios. Revisá tu conexión o volvé a intentarlo.");console.error("Error consultando disponibilidad:",error);}
+finally{loadingSlots=false;}
+}
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div><strong>TOUCH</strong> <span class="footer-accent">/</span> PELUQUERÍA MASCULINA</div>
-      <div>Tu estilo habla por vos.</div>
-    </div>
-  </footer>
+function appendHidden(formElement,name,value){const input=document.createElement("input");input.type="hidden";input.name=name;input.value=value==null?"":String(value);formElement.appendChild(input);}
+function submitBooking(data){
+const postForm=document.createElement("form");postForm.method="POST";postForm.action=SCRIPT_URL;postForm.target="submitFrame";postForm.style.display="none";
+appendHidden(postForm,"accion","registrarTurno");
+appendHidden(postForm,"nombre",data.nombre);
+appendHidden(postForm,"apellido",data.apellido);
+appendHidden(postForm,"telefono",data.telefono);
+appendHidden(postForm,"servicio",data.servicio);
+appendHidden(postForm,"fecha",data.fecha);
+appendHidden(postForm,"hora",data.hora);
+appendHidden(postForm,"observaciones",data.observaciones);
+document.body.appendChild(postForm);postForm.submit();setTimeout(()=>postForm.remove(),2000);
+}
+function buildWhatsAppMessage(data){return ["Hola TOUCH, acabo de solicitar un turno.","",`Nombre: ${data.nombre} ${data.apellido}`,`Teléfono: ${data.telefono}`,`Servicio: ${data.servicio}`,`Fecha: ${formatDate(data.fecha)}`,`Hora: ${data.hora} hs`,data.observaciones?`Comentario: ${data.observaciones}`:"","","Quedo a la espera de la confirmación."].filter(Boolean).join("\n");}
+function addWhatsAppButton(data){const link=document.createElement("a");link.href="https://wa.me/"+WHATSAPP_NEGOCIO+"?text="+encodeURIComponent(buildWhatsAppMessage(data));link.target="_blank";link.rel="noopener";link.className="btn btn-secondary";link.style.width="100%";link.style.marginTop="12px";link.textContent="CONTINUAR POR WHATSAPP ↗";messageBox.appendChild(document.createElement("br"));messageBox.appendChild(link);}
 
-  <iframe name="submitFrame" id="submitFrame" title="Envío de reserva" style="display:none"></iframe>
+fechaInput.min=localDateString(new Date());
+fechaInput.addEventListener("change",loadSlots);
 
-  <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCnjh4Z_cugIZypGM_xWtqd4dIpeu5o-EdruxriQM-X7SZyuJF4BxqtMf8K-DTyQJ2NA/exec";
-
-    const fechaInput = document.getElementById("fecha");
-    const slotsContainer = document.getElementById("slots");
-    const horaInput = document.getElementById("hora");
-    const form = document.getElementById("bookingForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const messageBox = document.getElementById("formMessage");
-    const summary = document.getElementById("selectedSummary");
-    const summaryText = document.getElementById("selectedSummaryText");
-    const slotDateLabel = document.getElementById("slotDateLabel");
-
-    let selectedSlot = "";
-    let loadingSlots = false;
-    let submitting = false;
-
-    function localDateString(date) {
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, "0");
-      const d = String(date.getDate()).padStart(2, "0");
-      return `${y}-${m}-${d}`;
-    }
-
-    function formatDate(dateString) {
-      if (!dateString) return "";
-      const parts = dateString.split("-").map(Number);
-      const date = new Date(parts[0], parts[1] - 1, parts[2]);
-      return date.toLocaleDateString("es-AR", {
-        weekday:"long",day:"numeric",month:"long",year:"numeric"
-      });
-    }
-
-    function setMessage(text, type) {
-      messageBox.textContent = text;
-      messageBox.className = `form-message show ${type || ""}`;
-    }
-
-    function clearMessage() {
-      messageBox.textContent = "";
-      messageBox.className = "form-message";
-    }
-
-    function resetSelectedSlot() {
-      selectedSlot = "";
-      horaInput.value = "";
-      summary.classList.remove("show");
-    }
-
-    function showSlotsMessage(text) {
-      slotsContainer.innerHTML = "";
-      const element = document.createElement("div");
-      element.className = "slots-message";
-      element.textContent = text;
-      slotsContainer.appendChild(element);
-    }
-
-    function selectSlot(time, button) {
-      selectedSlot = time;
-      horaInput.value = time;
-      slotsContainer.querySelectorAll(".slot").forEach(slot => {
-        slot.classList.toggle("selected", slot === button);
-        slot.setAttribute("aria-pressed", slot === button ? "true" : "false");
-      });
-      summaryText.textContent = `${formatDate(fechaInput.value)} · ${time} hs`;
-      summary.classList.add("show");
-      clearMessage();
-    }
-
-    function jsonpRequest(url, timeoutMs = 15000) {
-      return new Promise((resolve, reject) => {
-        const callbackName = "touchCallback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
-        const script = document.createElement("script");
-        const separator = url.includes("?") ? "&" : "?";
-        let finished = false;
-        const timer = setTimeout(() => finish(new Error("La consulta tardó demasiado.")), timeoutMs);
-
-        function finish(error, data) {
-          if (finished) return;
-          finished = true;
-          clearTimeout(timer);
-          try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
-          script.remove();
-          if (error) reject(error);
-          else resolve(data);
-        }
-
-        window[callbackName] = data => finish(null, data);
-        script.onerror = () => finish(new Error("No se pudo conectar con la agenda."));
-        script.src = url + separator + "callback=" + encodeURIComponent(callbackName);
-        document.head.appendChild(script);
-      });
-    }
-
-    async function loadSlots() {
-      const date = fechaInput.value;
-      resetSelectedSlot();
-      clearMessage();
-
-      if (!date) {
-        slotDateLabel.textContent = "Elegí una fecha";
-        showSlotsMessage("Seleccioná una fecha para consultar los horarios libres.");
-        return;
-      }
-
-      slotDateLabel.textContent = formatDate(date);
-
-      if (date < localDateString(new Date())) {
-        showSlotsMessage("Elegí una fecha de hoy en adelante.");
-        return;
-      }
-
-      loadingSlots = true;
-      showSlotsMessage("Consultando horarios disponibles…");
-
-      try {
-        const url = SCRIPT_URL + "?accion=disponibilidad&fecha=" + encodeURIComponent(date);
-        const response = await jsonpRequest(url);
-
-        if (!response || response.ok !== true || !Array.isArray(response.horarios)) {
-          throw new Error("La agenda respondió con un formato inesperado.");
-        }
-
-        slotsContainer.innerHTML = "";
-
-        if (response.horarios.length === 0) {
-          showSlotsMessage("No hay horarios disponibles para esta fecha. Probá con otro día.");
-          return;
-        }
-
-        response.horarios.forEach(time => {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "slot";
-          button.textContent = time;
-          button.setAttribute("aria-pressed", "false");
-          button.addEventListener("click", () => selectSlot(time, button));
-          slotsContainer.appendChild(button);
-        });
-      } catch (error) {
-        showSlotsMessage("No pudimos cargar los horarios. Revisá tu conexión o volvé a intentarlo.");
-        console.error("Error consultando disponibilidad:", error);
-      } finally {
-        loadingSlots = false;
-      }
-    }
-
-    function appendHidden(formElement, name, value) {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      input.value = value == null ? "" : String(value);
-      formElement.appendChild(input);
-    }
-
-    function submitBooking(data) {
-      const postForm = document.createElement("form");
-      postForm.method = "POST";
-      postForm.action = SCRIPT_URL;
-      postForm.target = "submitFrame";
-      postForm.style.display = "none";
-
-      appendHidden(postForm, "accion", "registrarTurno");
-      appendHidden(postForm, "nombre", data.nombre);
-      appendHidden(postForm, "apellido", data.apellido);
-      appendHidden(postForm, "telefono", data.telefono);
-      appendHidden(postForm, "fecha", data.fecha);
-      appendHidden(postForm, "hora", data.hora);
-      appendHidden(postForm, "observaciones", data.observaciones);
-
-      document.body.appendChild(postForm);
-      postForm.submit();
-      setTimeout(() => postForm.remove(), 2000);
-    }
-
-    fechaInput.min = localDateString(new Date());
-    fechaInput.addEventListener("change", loadSlots);
-
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-      clearMessage();
-
-      if (submitting) return;
-
-      if (!horaInput.value || !selectedSlot) {
-        setMessage("Primero seleccioná un horario disponible.", "error");
-        slotsContainer.scrollIntoView({ behavior:"smooth",block:"center" });
-        return;
-      }
-
-      if (loadingSlots) {
-        setMessage("Esperá a que termine la consulta de horarios.", "error");
-        return;
-      }
-
-      const data = {
-        nombre:form.nombre.value.trim(),
-        apellido:form.apellido.value.trim(),
-        telefono:form.telefono.value.trim(),
-        fecha:fechaInput.value,
-        hora:horaInput.value,
-        observaciones:form.observaciones.value.trim()
-      };
-
-      if (!data.nombre || !data.apellido || !data.telefono || !data.fecha || !data.hora) {
-        setMessage("Completá todos los campos obligatorios y elegí un horario.", "error");
-        return;
-      }
-
-      submitting = true;
-      submitBtn.disabled = true;
-      submitBtn.textContent = "ENVIANDO SOLICITUD…";
-      setMessage("Enviando tu solicitud…", "");
-
-      try {
-        submitBooking(data);
-
-        /*
-          El envío se realiza en segundo plano mediante el formulario oculto.
-          Google Apps Script no siempre permite leer la respuesta del iframe.
-          Por eso no mostramos un falso error por esa limitación.
-        */
-        setTimeout(() => {
-          submitting = false;
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = "SOLICITAR TURNO ↗";
-
-          setMessage(
-            "¡Solicitud de turno recibida! Te enviaremos un mensaje por WhatsApp para confirmar tu turno. Por favor, revisá tus mensajes.",
-            "success"
-          );
-
-          form.reset();
-          resetSelectedSlot();
-          fechaInput.min = localDateString(new Date());
-          slotDateLabel.textContent = "Elegí una fecha";
-          showSlotsMessage("Seleccioná una fecha para consultar los horarios libres.");
-        }, 900);
-      } catch (error) {
-        submitting = false;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "SOLICITAR TURNO ↗";
-        setMessage("No pudimos iniciar el envío. Revisá los datos e intentá nuevamente.", "error");
-        console.error("Error enviando turno:", error);
-      }
-    });
-  </script>
+form.addEventListener("submit",event=>{
+event.preventDefault();clearMessage();
+if(submitting)return;
+if(!horaInput.value||!selectedSlot){setMessage("Primero seleccioná un horario disponible.","error");slotsContainer.scrollIntoView({behavior:"smooth",block:"center"});return;}
+if(loadingSlots){setMessage("Esperá a que termine la consulta de horarios.","error");return;}
+const data={
+nombre:form.nombre.value.trim(),
+apellido:form.apellido.value.trim(),
+telefono:form.telefono.value.trim(),
+servicio:form.querySelector('input[name="servicio"]:checked')?.value||"",
+fecha:fechaInput.value,
+hora:horaInput.value,
+observaciones:form.observaciones.value.trim()
+};
+if(!data.nombre||!data.apellido||!data.telefono||!data.servicio||!data.fecha||!data.hora){setMessage("Completá todos los campos obligatorios, elegí un servicio y seleccioná un horario.","error");return;}
+submitting=true;submitBtn.disabled=true;submitBtn.textContent="ENVIANDO SOLICITUD…";setMessage("Enviando tu solicitud…","");
+try{
+submitBooking(data);
+setTimeout(()=>{
+submitting=false;submitBtn.disabled=false;submitBtn.innerHTML="SOLICITAR TURNO ↗";
+setMessage("¡Solicitud de turno recibida! Te enviaremos un mensaje por WhatsApp para confirmar tu turno. Por favor, revisá tus mensajes.","success");
+addWhatsAppButton(data);
+form.reset();resetSelectedSlot();fechaInput.min=localDateString(new Date());slotDateLabel.textContent="Elegí una fecha";showSlotsMessage("Seleccioná una fecha para consultar los horarios libres.");
+},900);
+}catch(error){
+submitting=false;submitBtn.disabled=false;submitBtn.innerHTML="SOLICITAR TURNO ↗";
+setMessage("No pudimos iniciar el envío. Revisá los datos e intentá nuevamente.","error");
+console.error("Error enviando turno:",error);
+}
+});
+</script>
 </body>
 </html>
