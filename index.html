@@ -38,8 +38,27 @@ h1 .red{color:var(--red)}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .btn-primary{color:white;background:linear-gradient(135deg,#f03a49,#b8172a);box-shadow:0 9px 25px rgba(227,38,54,.2)}
 .btn-secondary{color:white;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.16)}
+
+/* Spider-Man grande e interactivo a la derecha */
+.hero-content{position:relative;z-index:2;width:62%;max-width:720px}
+.hero-spider{position:absolute;z-index:1;right:4%;top:50%;transform:translateY(-48%);width:min(39%,410px);display:flex;align-items:center;justify-content:center}
+.spider-trigger{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;cursor:pointer;filter:drop-shadow(0 18px 24px rgba(0,0,0,.42));transition:transform .25s ease,filter .25s ease}
+.spider-trigger:hover,.spider-trigger:focus-visible{transform:scale(1.045);filter:drop-shadow(0 0 20px rgba(227,38,54,.3))}
+.spider-trigger:focus-visible{outline:2px solid var(--red);outline-offset:8px;border-radius:24px}
+.spider-main{display:block;width:100%;height:auto;object-fit:contain}
+.spider-burst{position:absolute;inset:0;pointer-events:none}
+.spider-mini{position:absolute;width:25%;height:auto;object-fit:contain;opacity:0;transform:scale(.2) rotate(-18deg);transition:opacity .25s ease,transform .38s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 8px 10px rgba(0,0,0,.4))}
+.hero-spider.is-open .spider-mini{opacity:1;transform:scale(1) rotate(0)}
+.spider-mini:nth-child(1){left:-8%;top:3%;transition-delay:.02s}
+.spider-mini:nth-child(2){right:-8%;top:8%;transition-delay:.06s}
+.spider-mini:nth-child(3){left:-13%;top:42%;transition-delay:.1s}
+.spider-mini:nth-child(4){right:-12%;top:48%;transition-delay:.14s}
+.spider-mini:nth-child(5){left:4%;bottom:-8%;transition-delay:.18s}
+.spider-mini:nth-child(6){right:2%;bottom:-9%;transition-delay:.22s}
+.spider-hint{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:900;letter-spacing:1.5px;color:#d6d9e4;white-space:nowrap;text-transform:uppercase}
 .hero-stamp{position:absolute;right:34px;bottom:30px;width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transform:rotate(-12deg);background:rgba(7,8,12,.5);color:#d8e8ff;font-size:9px;font-weight:900;letter-spacing:1px;text-align:center;line-height:1.4}
 .hero-stamp strong{display:block;color:var(--red);font-size:20px;letter-spacing:0}
+
 .features{width:min(1160px,calc(100% - 36px));margin:20px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .feature{display:flex;align-items:center;gap:13px;min-width:0;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.025);padding:17px}
 .feature-icon{width:39px;height:39px;flex-shrink:0;display:grid;place-items:center;border-radius:12px;color:white;background:rgba(227,38,54,.13);border:1px solid rgba(227,38,54,.2);font-size:18px}
@@ -108,13 +127,55 @@ h1 .red{color:var(--red)}
 .web-decoration svg{width:100%;height:100%}
 .web-top{top:0;right:0}
 .web-bottom{bottom:0;left:0;transform:rotate(180deg)}
-@media(max-width:820px){.hero{min-height:360px}.hero-stamp{right:20px;bottom:20px;width:62px;height:62px}.booking-section{grid-template-columns:1fr;gap:27px;margin-top:55px}.section-intro p{max-width:560px}.steps{grid-template-columns:repeat(3,1fr);gap:10px}.step{align-items:flex-start;line-height:1.5}.features{gap:8px}.feature{padding:12px;gap:9px}.feature-icon{width:34px;height:34px}}
-@media(max-width:560px){.navbar{min-height:72px;width:calc(100% - 28px)}.brand-logo{width:57px;height:52px}.brand-name{font-size:18px}.brand-sub{font-size:8px;letter-spacing:1.6px}.nav-tag{padding:8px 10px;font-size:9px}.hero{width:calc(100% - 24px);border-radius:21px;min-height:355px}.hero-content{padding:38px 23px 46px}h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}.hero-copy{font-size:13px;max-width:310px}.hero-stamp{opacity:.8;width:53px;height:53px;right:15px;bottom:13px;font-size:7px}.hero-stamp strong{font-size:15px}.features{width:calc(100% - 24px);grid-template-columns:1fr;margin-top:12px}.feature{padding:12px 14px}.booking-section{width:calc(100% - 24px);margin:52px auto}.steps{grid-template-columns:1fr;gap:13px}.booking-card{padding:20px 15px;border-radius:19px}.card-heading h3{font-size:18px}.form-grid{grid-template-columns:1fr;gap:0}.slots{grid-template-columns:repeat(3,minmax(0,1fr))}.footer-inner{flex-direction:column;text-align:center}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+@media(max-width:820px){
+.hero{min-height:360px}
+.hero-content{width:64%;padding:42px 25px}
+.hero-spider{right:2%;width:36%}
+.hero-stamp{right:20px;bottom:20px;width:62px;height:62px}
+.booking-section{grid-template-columns:1fr;gap:27px;margin-top:55px}
+.section-intro p{max-width:560px}
+.steps{grid-template-columns:repeat(3,1fr);gap:10px}
+.step{align-items:flex-start;line-height:1.5}
+.features{gap:8px}
+.feature{padding:12px;gap:9px}
+.feature-icon{width:34px;height:34px}
+}
+@media(max-width:560px){
+.navbar{min-height:72px;width:calc(100% - 28px)}
+.brand-logo{width:57px;height:52px}
+.brand-name{font-size:18px}
+.brand-sub{font-size:8px;letter-spacing:1.6px}
+.nav-tag{padding:8px 10px;font-size:9px}
+.hero{width:calc(100% - 24px);border-radius:21px;min-height:510px;align-items:flex-start}
+.hero-content{width:100%;padding:32px 23px 220px}
+h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}
+.hero-copy{font-size:13px;max-width:310px}
+.hero-actions{margin-top:20px;gap:8px}
+.hero-actions .btn{padding:0 13px;font-size:10px}
+.hero-spider{top:auto;bottom:20px;right:50%;transform:translateX(50%);width:180px;max-width:53%}
+.spider-mini{width:24%}
+.spider-hint{bottom:-13px;font-size:8px}
+.hero-stamp{opacity:.8;width:48px;height:48px;right:12px;bottom:12px;font-size:7px}
+.hero-stamp strong{font-size:14px}
+.features{width:calc(100% - 24px);grid-template-columns:1fr;margin-top:12px}
+.feature{padding:12px 14px}
+.booking-section{width:calc(100% - 24px);margin:52px auto}
+.steps{grid-template-columns:1fr;gap:13px}
+.booking-card{padding:20px 15px;border-radius:19px}
+.card-heading h3{font-size:18px}
+.form-grid{grid-template-columns:1fr;gap:0}
+.slots{grid-template-columns:repeat(3,minmax(0,1fr))}
+.footer-inner{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
 </style>
 </head>
 <body>
 <div class="top-line"></div>
+
 <header class="navbar">
 <a class="brand" href="#" aria-label="TOUCH Peluquería Masculina, inicio">
 <img class="brand-logo" src="logo.png" alt="Logo TOUCH Peluquería Masculina">
@@ -122,22 +183,50 @@ h1 .red{color:var(--red)}
 </a>
 <a class="nav-tag" href="#reservar">RESERVÁ TU TURNO ↗</a>
 </header>
+
 <main>
 <section class="hero">
-<div class="web-decoration web-top" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8"><path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/><path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/></svg></div>
+<div class="web-decoration web-top" aria-hidden="true">
+<svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8">
+<path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/>
+<path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/>
+</svg>
+</div>
+
 <div class="hero-content">
 <div class="eyebrow">TU ESTILO · TU IDENTIDAD</div>
 <h1>EL DETALLE<br>HACE AL <span class="red">LOOK.</span></h1>
 <p class="hero-copy">Un buen corte cambia todo. Elegí tu día, encontrá tu horario y vení a vivir la experiencia TOUCH.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="#reservar">RESERVAR TURNO <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#como-funciona">CÓMO FUNCIONA</a></div>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#reservar">RESERVAR TURNO <span aria-hidden="true">↗</span></a>
+<a class="btn btn-secondary" href="#como-funciona">CÓMO FUNCIONA</a>
 </div>
+</div>
+
+<div class="hero-spider" id="heroSpider">
+<button class="spider-trigger" id="spiderTrigger" type="button" aria-expanded="false" aria-label="Mostrar iconos de Spider-Man">
+<img class="spider-main" src="spiderman.png" alt="Ilustración de Spider-Man">
+<span class="spider-burst" aria-hidden="true">
+<img class="spider-mini" src="spiderman.png" alt="">
+<img class="spider-mini" src="spiderman.png" alt="">
+<img class="spider-mini" src="spiderman.png" alt="">
+<img class="spider-mini" src="spiderman.png" alt="">
+<img class="spider-mini" src="spiderman.png" alt="">
+<img class="spider-mini" src="spiderman.png" alt="">
+</span>
+</button>
+<div class="spider-hint">TOCÁ A SPIDEY</div>
+</div>
+
 <div class="hero-stamp" aria-hidden="true"><div><strong>✳</strong> FRESH<br>LOOK</div></div>
 </section>
+
 <section class="features" aria-label="Ventajas de reservar">
 <div class="feature"><div class="feature-icon" aria-hidden="true">✂</div><div><strong>Tu estilo, a tu manera</strong><small>Un espacio pensado para vos.</small></div></div>
 <div class="feature"><div class="feature-icon" aria-hidden="true">◷</div><div><strong>Elegí tu horario</strong><small>Consultá los turnos disponibles.</small></div></div>
 <div class="feature"><div class="feature-icon" aria-hidden="true">✓</div><div><strong>Reservá en minutos</strong><small>Completá tus datos y listo.</small></div></div>
 </section>
+
 <section class="booking-section" id="reservar">
 <div class="section-intro" id="como-funciona">
 <div class="eyebrow">AGENDA ONLINE</div>
@@ -149,14 +238,26 @@ h1 .red{color:var(--red)}
 <div class="step"><span class="step-number">03</span><span>Dejanos tus datos y aguardá la confirmación.</span></div>
 </div>
 </div>
+
 <div class="booking-card">
-<div class="web-decoration web-bottom" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8"><path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/><path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/></svg></div>
-<div class="card-heading"><div><h3>Reservá tu turno</h3><p>Completá los datos para solicitarlo.</p></div><span class="live-dot">AGENDA ONLINE</span></div>
+<div class="web-decoration web-bottom" aria-hidden="true">
+<svg viewBox="0 0 100 100" fill="none" stroke="white" stroke-width=".8">
+<path d="M100 0V100M0 0H100M0 0 100 100M25 0 100 75M50 0 100 50M75 0 100 25M0 25 75 100M0 50 50 100M0 75 25 100"/>
+<path d="M0 20Q40 20 20 0M0 40Q70 40 40 0M0 60Q100 60 60 0M0 80Q100 80 80 0"/>
+</svg>
+</div>
+
+<div class="card-heading">
+<div><h3>Reservá tu turno</h3><p>Completá los datos para solicitarlo.</p></div>
+<span class="live-dot">AGENDA ONLINE</span>
+</div>
+
 <form id="bookingForm" autocomplete="on">
 <div class="form-grid">
 <div class="field"><label for="nombre">Nombre *</label><input id="nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="given-name" required maxlength="60"></div>
 <div class="field"><label for="apellido">Apellido *</label><input id="apellido" name="apellido" type="text" placeholder="Tu apellido" autocomplete="family-name" required maxlength="60"></div>
 </div>
+
 <div class="field"><label for="telefono">WhatsApp / Teléfono *</label><input id="telefono" name="telefono" type="tel" placeholder="Ej.: 3585 123456" autocomplete="tel" required maxlength="30"></div>
 
 <div class="field">
@@ -193,6 +294,7 @@ h1 .red{color:var(--red)}
 <input id="hora" name="hora" type="hidden" required>
 <div id="selectedSummary" class="selected-summary"><span aria-hidden="true">✓</span><span id="selectedSummaryText"></span></div>
 </div>
+
 <div class="field"><label for="observaciones">¿Querés dejarnos algún comentario? (opcional)</label><textarea id="observaciones" name="observaciones" placeholder="Un detalle que debamos saber..." maxlength="500"></textarea></div>
 <button id="submitBtn" class="btn btn-primary submit-btn" type="submit">SOLICITAR TURNO ↗</button>
 <p class="fine-print">El turno queda sujeto a confirmación. Te enviaremos un mensaje por WhatsApp para confirmarlo.</p>
@@ -201,8 +303,10 @@ h1 .red{color:var(--red)}
 </div>
 </section>
 </main>
+
 <footer class="footer"><div class="footer-inner"><div><strong>TOUCH</strong> <span class="footer-accent">/</span> PELUQUERÍA MASCULINA</div><div>Tu estilo habla por vos.</div></div></footer>
 <iframe name="submitFrame" id="submitFrame" title="Envío de reserva" style="display:none"></iframe>
+
 <script>
 const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyCnjh4Z_cugIZypGM_xWtqd4dIpeu5o-EdruxriQM-X7SZyuJF4BxqtMf8K-DTyQJ2NA/exec";
 const WHATSAPP_NEGOCIO="5493585021663";
@@ -218,6 +322,14 @@ const slotDateLabel=document.getElementById("slotDateLabel");
 let selectedSlot="";
 let loadingSlots=false;
 let submitting=false;
+
+const spiderContainer=document.getElementById("heroSpider");
+const spiderTrigger=document.getElementById("spiderTrigger");
+spiderTrigger.addEventListener("click",()=>{
+  const abierto=spiderContainer.classList.toggle("is-open");
+  spiderTrigger.setAttribute("aria-expanded",String(abierto));
+  spiderTrigger.setAttribute("aria-label",abierto?"Ocultar iconos de Spider-Man":"Mostrar iconos de Spider-Man");
+});
 
 function localDateString(date){const y=date.getFullYear();const m=String(date.getMonth()+1).padStart(2,"0");const d=String(date.getDate()).padStart(2,"0");return `${y}-${m}-${d}`;}
 function formatDate(dateString){if(!dateString)return "";const parts=dateString.split("-").map(Number);const date=new Date(parts[0],parts[1]-1,parts[2]);return date.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});}
