@@ -105,16 +105,19 @@ h1 .red{color:var(--red)}
 .form-message.error{color:#ffc2c7;border:1px solid rgba(227,38,54,.3);background:rgba(227,38,54,.08)}
 .form-message.success{color:#baf2d5;border:1px solid rgba(66,211,146,.25);background:rgba(66,211,146,.08)}
 .service-options{display:grid;gap:10px}
-.service-option{position:relative}
+.service-option{position:relative;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(255,255,255,.025);overflow:hidden;transition:border-color .2s,background .2s,box-shadow .2s}
+.service-option:hover{border-color:rgba(227,38,54,.7)}
 .service-option>input[type=radio]{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-.service-option>label{display:block;border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:14px;background:rgba(255,255,255,.025);cursor:pointer;transition:border-color .2s,background .2s}
-.service-option>label:hover{border-color:rgba(227,38,54,.7)}
-.service-option>input:checked+label{border-color:var(--red);background:rgba(227,38,54,.1);box-shadow:0 0 0 1px rgba(227,38,54,.18)}
+.service-option>label{display:block;padding:14px;background:transparent;cursor:pointer;transition:background .2s}
+.service-option>input:checked+label{background:rgba(227,38,54,.1)}
+.service-option:has(>input:checked){border-color:var(--red);box-shadow:0 0 0 1px rgba(227,38,54,.18)}
+.service-option>input:focus-visible+label{outline:2px solid var(--red);outline-offset:-3px;border-radius:10px}
 .service-title{display:block;font-size:13px;font-weight:900;color:#fff}
 .service-detail-toggle{display:inline-block;color:#ff8790;font-size:10px;font-weight:800;margin-top:8px;text-decoration:underline;text-underline-offset:3px}
+.service-option details{margin:0 14px 12px}
 .service-extra{display:none;color:#c5c8d2;font-size:11px;font-weight:500;line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)}
 .service-option details[open] .service-extra{display:block}
-.service-option details summary{list-style:none}
+.service-option details summary{list-style:none;cursor:pointer;outline-offset:3px}
 .service-option details summary::-webkit-details-marker{display:none}
 .service-option details summary::after{content:"＋";float:right;color:#ff8790;font-weight:900}
 .service-option details[open] summary::after{content:"−"}
@@ -263,21 +266,19 @@ h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}
 <div class="service-option"><input id="servicioBarba" type="radio" name="servicio" value="Solo barba" required><label for="servicioBarba"><span class="service-title">Solo barba</span></label></div>
 <div class="service-option">
 <input id="servicioTouchPlus" type="radio" name="servicio" value="Atención TOUCH+" required>
-<label for="servicioTouchPlus">
+<label for="servicioTouchPlus"><span class="service-title">Atención TOUCH+</span></label>
 <details>
-<summary><span class="service-title">Atención TOUCH+</span><span class="service-detail-toggle">Ver detalle</span></summary>
+<summary><span class="service-detail-toggle">Ver detalle</span></summary>
 <div class="service-extra">Corte de pelo completo + barba + mascarilla + vapor de ozono para cara + toalla caliente.</div>
 </details>
-</label>
 </div>
 <div class="service-option">
 <input id="servicioTouch" type="radio" name="servicio" value="Atención TOUCH" required>
-<label for="servicioTouch">
+<label for="servicioTouch"><span class="service-title">Atención TOUCH</span></label>
 <details>
-<summary><span class="service-title">Atención TOUCH</span><span class="service-detail-toggle">Ver detalle</span></summary>
+<summary><span class="service-detail-toggle">Ver detalle</span></summary>
 <div class="service-extra">Corte de pelo completo + mascarilla + vapor de ozono para cara + toalla caliente.</div>
 </details>
-</label>
 </div>
 </div>
 </div>
