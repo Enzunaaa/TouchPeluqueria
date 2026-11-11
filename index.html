@@ -130,6 +130,30 @@ h1 .red{color:var(--red)}
 .web-top{top:0;right:0}
 .web-bottom{bottom:0;left:0;transform:rotate(180deg)}
 
+
+/* PRECIOS TOUCH */
+.prices-section{width:min(1160px,calc(100% - 36px));margin:58px auto 0}
+.prices-heading{text-align:center;margin:0 auto 25px;max-width:680px}
+.prices-heading h2{font-size:clamp(30px,4vw,43px);letter-spacing:-1.5px;text-transform:uppercase;margin:14px 0 10px}
+.prices-heading h2 span{color:var(--red)}
+.prices-heading p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+.prices-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.price-card{min-height:100px;border:1px solid var(--border);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));padding:17px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.price-card.featured{border-color:rgba(227,38,54,.45);background:linear-gradient(145deg,rgba(227,38,54,.12),rgba(255,255,255,.02))}
+.price-name{font-size:13px;font-weight:850;line-height:1.45}
+.price-note{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px}
+.price-amount{font-size:18px;font-weight:950;white-space:nowrap;color:#fff}
+.price-card.featured .price-amount{color:#ff7782}
+.consumables{margin-top:22px;padding:19px;border:1px solid var(--border);border-radius:17px;background:rgba(255,255,255,.025)}
+.consumables-title{font-size:12px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;margin:0 0 13px;color:#e7e9ef}
+.consumables-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.consumable{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px;border-radius:11px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);font-size:12px}
+.consumable strong{white-space:nowrap;color:#ff7d87}
+.service-option>label{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.service-price-inline{font-size:12px;font-weight:950;color:#ff8790;white-space:nowrap}
+@media(max-width:760px){.prices-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.consumables-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.prices-section{width:calc(100% - 24px);margin-top:45px}.prices-grid{grid-template-columns:1fr}.price-card{min-height:76px;padding:14px}.consumables{padding:14px}.consumables-grid{grid-template-columns:1fr 1fr}}
+
 @media(max-width:820px){
 .hero{min-height:390px}
 .hero-content{width:65%;padding-right:20px}
@@ -226,6 +250,30 @@ h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}
 <div class="feature"><div class="feature-icon" aria-hidden="true">✓</div><div><strong>Reservá en minutos</strong><small>Completá tus datos y listo.</small></div></div>
 </section>
 
+<section class="prices-section" id="precios" aria-labelledby="pricesTitle">
+  <div class="prices-heading">
+    <div class="eyebrow">SERVICIOS TOUCH</div>
+    <h2 id="pricesTitle">Elegí tu servicio.<br><span>Conocé el precio.</span></h2>
+    <p>Todos los valores están expresados en pesos argentinos. Las consumiciones se pueden pedir en el local.</p>
+  </div>
+  <div class="prices-grid">
+    <article class="price-card"><div class="price-name">Corte de pelo solo</div><div class="price-amount">$15.000</div></article>
+    <article class="price-card"><div class="price-name">Corte de pelo y barba</div><div class="price-amount">$20.000</div></article>
+    <article class="price-card"><div class="price-name">Corte de barba</div><div class="price-amount">$10.000</div></article>
+    <article class="price-card featured"><div class="price-name">Atención TOUCH</div><div class="price-amount">$25.000</div></article>
+    <article class="price-card featured"><div class="price-name">Atención TOUCH+<span class="price-note">Experiencia completa</span></div><div class="price-amount">$30.000</div></article>
+  </div>
+  <div class="consumables">
+    <h3 class="consumables-title">Para acompañar tu visita</h3>
+    <div class="consumables-grid">
+      <div class="consumable"><span>Coca-Cola (lata)</span><strong>$2.500</strong></div>
+      <div class="consumable"><span>Fanta (lata)</span><strong>$2.500</strong></div>
+      <div class="consumable"><span>Sprite (lata)</span><strong>$2.500</strong></div>
+      <div class="consumable"><span>Café</span><strong>$1.500</strong></div>
+    </div>
+  </div>
+</section>
+
 <section class="booking-section" id="reservar">
 <div class="section-intro" id="como-funciona">
 <div class="eyebrow">AGENDA ONLINE</div>
@@ -261,12 +309,12 @@ h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}
 <div class="field">
 <div class="field-label">¿Qué servicio querés realizarte? *</div>
 <div class="service-options" role="radiogroup" aria-label="Elegí un solo servicio">
-<div class="service-option"><input id="servicioCorte" type="radio" name="servicio" value="Corte de pelo" required><label for="servicioCorte"><span class="service-title">Corte de pelo</span></label></div>
-<div class="service-option"><input id="servicioCorteBarba" type="radio" name="servicio" value="Corte de pelo y barba" required><label for="servicioCorteBarba"><span class="service-title">Corte de pelo y barba</span></label></div>
-<div class="service-option"><input id="servicioBarba" type="radio" name="servicio" value="Solo barba" required><label for="servicioBarba"><span class="service-title">Solo barba</span></label></div>
+<div class="service-option"><input id="servicioCorte" type="radio" name="servicio" value="Corte de pelo" required><label for="servicioCorte"><span class="service-title">Corte de pelo</span><span class="service-price-inline">$15.000</span></label></div>
+<div class="service-option"><input id="servicioCorteBarba" type="radio" name="servicio" value="Corte de pelo y barba" required><label for="servicioCorteBarba"><span class="service-title">Corte de pelo y barba</span><span class="service-price-inline">$20.000</span></label></div>
+<div class="service-option"><input id="servicioBarba" type="radio" name="servicio" value="Solo barba" required><label for="servicioBarba"><span class="service-title">Solo barba</span><span class="service-price-inline">$10.000</span></label></div>
 <div class="service-option">
 <input id="servicioTouchPlus" type="radio" name="servicio" value="Atención TOUCH+" required>
-<label for="servicioTouchPlus"><span class="service-title">Atención TOUCH+</span></label>
+<label for="servicioTouchPlus"><span class="service-title">Atención TOUCH+</span><span class="service-price-inline">$30.000</span></label>
 <details>
 <summary><span class="service-detail-toggle">Ver detalle</span></summary>
 <div class="service-extra">Corte de pelo completo + barba + mascarilla + vapor de ozono para cara + toalla caliente.</div>
@@ -274,7 +322,7 @@ h1{letter-spacing:-2.5px;font-size:clamp(43px,12vw,62px)}
 </div>
 <div class="service-option">
 <input id="servicioTouch" type="radio" name="servicio" value="Atención TOUCH" required>
-<label for="servicioTouch"><span class="service-title">Atención TOUCH</span></label>
+<label for="servicioTouch"><span class="service-title">Atención TOUCH</span><span class="service-price-inline">$25.000</span></label>
 <details>
 <summary><span class="service-detail-toggle">Ver detalle</span></summary>
 <div class="service-extra">Corte de pelo completo + mascarilla + vapor de ozono para cara + toalla caliente.</div>
@@ -406,3 +454,4 @@ console.error("Error enviando turno:",error);
 </script>
 </body>
 </html>
+
